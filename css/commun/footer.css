@@ -16,12 +16,14 @@ footer.visible {
     transform: translateY(0);
 }
 
+/* ===== Footer Links dont't touch ===== */
+
 /* Liens dans le footer */
-footer a {
-    color: #FF5C00 !important; /* Orange vif */
-    text-decoration: none;
-    font-weight: 500;
-}
-footer a:hover {
-    color: #DEDEDE !important; /* Gris clair au survol */
-}
+/* footer a { */
+    /* color: #FF5C00 !important; Orange vif */
+    /* text-decoration: none; */
+    /* font-weight: 500; */
+/* } */
+/* footer a:hover { */
+    /* color: #DEDEDE !important; Gris clair au survol */
+/* } */

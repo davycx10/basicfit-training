@@ -39,7 +39,7 @@ switch ($page) {
         include ('view/accueil.php');
         break;
 }
-
+// fin du body
 echo '</main>';
 
 // ajout du footer
