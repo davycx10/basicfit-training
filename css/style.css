@@ -1,0 +1,15 @@
+/* ===== GLOBAL ===== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Bloque le scroll horizontal */
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    flex: 1; /* Prend tout l'espace dispo pour pousser le footer en bas */
+}

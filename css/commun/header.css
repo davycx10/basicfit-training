@@ -1,0 +1,57 @@
+/* ===== HEADER CUSTOM ===== */
+header .navbar {
+    background-color: #1C1C1C !important;  /* Noir */
+    padding: 1rem 2rem; /* Plus d'espace haut/bas et gauche/droite */
+}
+
+/* Logo (Basic Fit) */
+header .navbar-brand {
+    color: #FF5C00; /* Orange vif */
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* margin-right: 8rem; Espace entre logo et menus */
+}
+header .navbar-brand:hover {
+    color: #DEDEDE; /* Gris clair au survol */
+}
+
+/* Liens du menu */
+header .navbar-nav .nav-link {
+    color: #FFFFFF; /* Blanc par défaut */
+    margin: 0 0.8rem; /* Espacement horizontal entre onglets */
+    font-weight: 500;
+}
+header .navbar-nav .nav-link:hover {
+    color: #FF5C00; /* Orange au survol */
+}
+
+/* Dropdown menu */
+header .dropdown-menu {
+    background-color: #1C1C1C; /* Gris foncé */
+    border: none;
+}
+header .dropdown-menu .dropdown-item {
+    color: #DEDEDE; /* Gris clair */
+}
+header .dropdown-menu .dropdown-item:hover {
+    background-color: #FF5C00; /* Orange en fond au survol */
+    color: #FFFFFF; /* Texte blanc */
+}
+
+/* Icônes Bootstrap dans le menu */
+header .navbar-nav .nav-link i {
+    margin-right: 5px;
+    color: #DEDEDE; /* Gris clair pour les icônes */
+}
+header .navbar-nav .nav-link:hover i {
+    color: #FF5C00; /* Orange au survol */
+}
+
+
+header .navbar-nav {
+    display: flex;
+    justify-content: center; /* Centre les onglets */
+    gap: 2rem; /* Ajoute un grand espace entre Accueil / Coach / Client */
+    flex: 1; 
+    /* Prend toute la largeur dispo      */
+}
