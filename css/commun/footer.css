@@ -1,0 +1,29 @@
+/* ===== FOOTER ===== */
+footer {
+    background-color: #1C1C1C !important; /* Noir/gris foncé */
+    color: #FFFFFF !important; /* Blanc */
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto; /* Force le footer à rester en bas */
+    opacity: 0; /* Invisible au départ */
+    transform: translateY(20px); /* Décalé vers le bas */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Animation douce */
+}
+
+/* Quand le footer est visible dans la page */
+footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Footer Links dont't touch ===== */
+
+/* Liens dans le footer */
+/* footer a { */
+    /* color: #FF5C00 !important; Orange vif */
+    /* text-decoration: none; */
+    /* font-weight: 500; */
+/* } */
+/* footer a:hover { */
+    /* color: #DEDEDE !important; Gris clair au survol */
+/* } */
