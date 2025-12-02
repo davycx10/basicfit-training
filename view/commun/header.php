@@ -78,7 +78,7 @@
                     </li>
                 </ul>
 
-                <!-- Partie droite : gestion utilisateur selon rôle -->
+                <!-- Partie droite : affichage utilisateur connecté -->
                 <ul class="navbar-nav ms-auto">
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'client'): ?>
                         <li class="nav-item">
@@ -102,17 +102,6 @@
                                 <input type="hidden" name="action" value="deconnexion">
                                 <button type="submit" class="btn btn-outline-light ms-2"><i class="bi bi-box-arrow-left"></i> Déconnexion</button>
                             </form>
-                        </li>
-
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=connexion_client"><i class="bi bi-person"></i> Espace Client</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=inscription_coach"><i class="bi bi-person-plus"></i> Devenir Coach</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=connexion_coach"><i class="bi bi-lock"></i> Accès Pro</a>
                         </li>
                     <?php endif; ?>
                 </ul>
