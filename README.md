@@ -1,6 +1,3 @@
-Parfait, je vais fusionner les deux textes en un seul document cohérent, **sans emojis inutiles**, en évitant les répétitions mais en gardant toutes les informations importantes. Voici la version finale :
-
----
 
 # BasicFit – Projet CFA INSTA – Client Léger  
 ## Plateforme de Formation et de Coaching Sportif
