@@ -1,4 +1,4 @@
-// bdd/bdd.php gère la connexion à la base de données
+<!-- // bdd/bdd.php gère la connexion à la base de données -->
 
 <?php
 

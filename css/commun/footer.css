@@ -1,29 +1,44 @@
-/* ===== FOOTER ===== */
-footer {
-    background-color: #1C1C1C !important; /* Noir/gris foncé */
-    color: #FFFFFF !important; /* Blanc */
+/* =========================================
+    FOOTER
+   ========================================= */
+.main-footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-col h3 span { color: #fe7000; }
+.footer-col h4 { 
+    color: white; 
+    margin-bottom: 20px; 
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col li { margin-bottom: 12px; }
+.footer-col a { color: #888; transition: 0.3s; }
+.footer-col a:hover { color: #fe7000; padding-left: 5px; }
+
+.footer-bottom {
     text-align: center;
-    padding: 1rem;
-    margin-top: auto; /* Force le footer à rester en bas */
-    opacity: 0; /* Invisible au départ */
-    transform: translateY(20px); /* Décalé vers le bas */
-    transition: opacity 0.8s ease, transform 0.8s ease; /* Animation douce */
+    padding: 20px;
+    font-size: 0.85em;
+    color: #555;
+    background-color: #111;
 }
-
-/* Quand le footer est visible dans la page */
-footer.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== Footer Links dont't touch ===== */
-
-/* Liens dans le footer */
-/* footer a { */
-    /* color: #FF5C00 !important; Orange vif */
-    /* text-decoration: none; */
-    /* font-weight: 500; */
-/* } */
-/* footer a:hover { */
-    /* color: #DEDEDE !important; Gris clair au survol */
-/* } */

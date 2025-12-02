@@ -1,15 +1,224 @@
-/* ===== GLOBAL ===== */
-html, body {
-    height: 100%;
+/* =========================================
+   FICHIER PRINCIPAL - STYLES GLOBAUX
+   =========================================
+   Ce fichier contient les styles de base:
+   - Reset et configuration globale
+   - Typographie générale (h1, h2, p, a)
+   - Conteneurs réutilisables
+   - Boutons génériques
+   ========================================= */
+
+/* ===== MAIN CONTENT ===== */
+main {
+    flex: 1;
+    /* padding-bottom: 40px; espace entre le contenu et le footer */
+}
+
+main > *:last-child {
+    margin-bottom: 40px; /* espace uniquement sous le dernier élément */
+}
+
+/* =========================================
+   1. GLOBAL & RESET
+   ========================================= */
+* {
+    box-sizing: border-box; /* Permet de mieux gérer les tailles */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police plus moderne */
     margin: 0;
     padding: 0;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    height: 100%;
     overflow-x: hidden; /* Bloque le scroll horizontal */
     display: flex;
     flex-direction: column;
     flex: auto;
 }
 
-/* ===== MAIN CONTENT ===== */
-main {
-    flex: 1; /* Prend tout l'espace dispo pour pousser le footer en bas */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* =========================================
+   2. BOUTONS
+   ========================================= */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 30px; /* Boutons bien ronds */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #fe7000;
+    color: white;
+    border: 2px solid #fe7000;
+    box-shadow: 0 4px 15px rgba(254, 112, 0, 0.4); /* Ombre orange */
+}
+
+.btn-primary:hover {
+    background-color: #e06000;
+    border-color: #e06000;
+    transform: translateY(-2px); /* Le bouton monte un peu */
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: #333;
+}
+
+/* Bouton outline version orange pour fond blanc */
+a.btn-outline.orange-border {
+    border-color: #fe7000;
+    color: #fe7000;
+}
+
+.btn-secondary {
+    background-color: #444;
+    color: white;
+    border: 2px solid #444;
+}
+
+/* Bouton pleine largeur */
+.full-width {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+/* --- BOUTON SPÉCIAL POUR LES CARTES BLANCHES --- */
+.btn-card {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 2px solid #fe7000; /* Contour Orange */
+    color: #fe7000;            /* Texte Orange */
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-card:hover {
+    background-color: #fe7000; /* Devient Orange au survol */
+    color: white;              /* Texte devient Blanc */
+}
+
+/* =========================================
+   3. FORMULAIRES (Connexion / Inscription)
+   ========================================= */
+
+/* Section qui centre le formulaire sur la page */
+.form-section {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changé de center à flex-start pour éviter de couper le haut sur petit écran */
+    min-height: 80vh; 
+    padding-top: 100px; /* Un peu d'espace avec le header */
+}
+
+/* La carte blanche du formulaire */
+.form-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px; /* Largeur max pour ne pas être trop large */
+    border-top: 5px solid #fe7000; /* Petite touche orange en haut */
+}
+
+.form-card h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Espacement entre les champs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Les champs de saisie (input) */
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.form-input:focus {
+    border-color: #fe7000; /* Bordure orange quand on clique dedans */
+    outline: none;
+    box-shadow: 0 0 5px rgba(254, 112, 0, 0.2);
+}
+
+/* Zone de texte (textarea) pour l'inscription */
+textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Message d'erreur */
+.alert-error {
+    background-color: #ffe6e6;
+    color: #d63031;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #d63031;
+}
+
+/* Lien en bas du formulaire */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.form-footer a {
+    color: #fe7000;
+    font-weight: bold;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
 }

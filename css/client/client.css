@@ -1,0 +1,469 @@
+/* =========================================
+   FICHIER STYLES - CLIENT
+   =========================================
+   Gère tous les styles de l'interface
+   client (adhérent):
+   - Bannière bienvenue
+   - Statistiques et KPI
+   - Profil du coach assigné
+   - État recherche de coach
+   - Programme déverrouillé/verrouillé
+   - Layout asymétrique dashboard
+   ========================================= */
+
+/* =========================================
+   1. BANNIÈRE DE BIENVENUE
+   ========================================= */
+
+/* Bannière d'accueil du client */
+.dashboard-welcome {
+    background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+    color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Partie texte (titres et description) */
+.welcome-text h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: white;
+}
+
+.welcome-text p {
+    margin: 5px 0 0;
+    color: #ccc;
+}
+
+/* Partie icône (à droite) */
+.welcome-icon {
+    font-size: 2.5em;
+}
+
+/* =========================================
+   2. BARRE DE STATISTIQUES (KPI)
+   ========================================= */
+
+/* Conteneur des statistiques */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Carte de statistique unique */
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Icône de la statistique */
+.stat-icon {
+    font-size: 2em;
+    background: #fff5eb;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* Information de la statistique */
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 0.85em;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.stat-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.stat-value.orange {
+    color: #fe7000;
+}
+
+/* =========================================
+   3. LAYOUT ASYMÉTRIQUE DU DASHBOARD
+   ========================================= */
+
+/* Conteneur principal du dashboard */
+.dashboard-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Barre latérale (coach + infos) */
+.sidebar-section {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Section principale (programme) */
+.main-section {
+    flex: 2; /* Prend plus de place */
+    min-width: 300px;
+}
+
+/* =========================================
+   4. PROFIL DU COACH ASSIGNÉ
+   ========================================= */
+
+/* Profil du coach (avec avatar) */
+.coach-profile {
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Avatar circulaire du coach */
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background: #fe7000;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    border: 4px solid #fff5eb;
+}
+
+/* Actions des boutons coach */
+.coach-actions {
+    margin-top: 20px;
+}
+
+/* =========================================
+   5. CARTES D'INFORMATION
+   ========================================= */
+
+/* Carte d'info générique */
+.info-card {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px dashed #ddd;
+}
+
+.info-card h4 {
+    margin: 0 0 10px;
+    color: #555;
+    font-size: 1em;
+}
+
+.info-card p {
+    margin: 0;
+    color: #333;
+    font-weight: 500;
+}
+
+/* =========================================
+   6. ÉTAT RECHERCHE DE COACH
+   ========================================= */
+
+/* Conteneur de recherche */
+.coach-searching {
+    text-align: center;
+    padding: 30px 0;
+}
+
+/* Icône avec animation pulse */
+.pulse-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Version compacte de la recherche (haut de page) */
+.coach-searching-small {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: #fffaf5;
+    border-radius: 8px;
+}
+
+.pulse-icon-small {
+    font-size: 1.5em;
+    animation: pulse 2s infinite;
+}
+
+/* =========================================
+   7. CARTES DE PROGRAMMES
+   ========================================= */
+
+/* Carte de programme générique */
+.programme-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+/* En-tête de la carte programme */
+.card-header-clean {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.card-header-clean h3 {
+    margin: 0;
+}
+
+/* =========================================
+   8. ZONE VERROUILLÉE (Programme non déverrouillé)
+   ========================================= */
+
+/* Conteneur de zone verrouillée */
+.locked-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 2px dashed #e0e0e0;
+}
+
+/* Cercle avec cadenas */
+.lock-circle {
+    width: 70px;
+    height: 70px;
+    background: #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #888;
+}
+
+.locked-zone h3 {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.locked-zone p {
+    color: #888;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* Zone verrouillée plus large (pour contenu important) */
+.locked-zone-large {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 300px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 2px dashed #ddd;
+    margin-top: 20px;
+}
+
+/* =========================================
+   9. PROGRAMME LARGE (EN BAS DE PAGE)
+   ========================================= */
+
+/* Section programme en grande taille */
+.programme-large {
+    width: 100%;
+    min-height: 500px;
+    padding: 40px;
+    border-top: 5px solid #fe7000;
+}
+
+/* =========================================
+   10. LAYOUT 2 COLONNES (Coach + Dispo)
+   ========================================= */
+
+/* Ligne avec Coach et Disponibilités côte à côte */
+.dashboard-split-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Section du coach (plus large) */
+.coach-section {
+    flex: 2; /* Le coach prend plus de place */
+    min-width: 300px;
+}
+
+/* Profil coach horizontal (compact) */
+.coach-profile-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.coach-details h4 {
+    margin: 0 0 5px 0;
+}
+
+.btn-text {
+    color: #fe7000;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+/* =========================================
+   11. ACTIONS PROGRAMME
+   ========================================= */
+
+/* Conteneur des actions */
+.programme-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.programme-assigned {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    color: #333;
+}
+
+/* =========================================
+   12. CORPS DE DÉTAIL (Info client)
+   ========================================= */
+
+/* Détails du profil client */
+.card-body-detail {
+    font-size: 0.95em;
+    color: #555;
+    background: #fdfdfd;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* Boîte de motivation */
+.motivation-box {
+    background-color: #fff3e0; /* Orange très clair */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 0.9em;
+    border-left: 3px solid #fe7000;
+}
+
+/* =========================================
+   13. RESPONSIVE - Client Dashboard
+   ========================================= */
+
+@media (max-width: 768px) {
+    .dashboard-welcome {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .welcome-icon {
+        text-align: center;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .sidebar-section {
+        flex: 1;
+    }
+    
+    .main-section {
+        flex: 1;
+    }
+    
+    .dashboard-split-row {
+        flex-direction: column;
+    }
+    
+    .coach-section {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-welcome h1 {
+        font-size: 1.3em;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .coach-profile-horizontal {
+        flex-direction: column;
+        text-align: center;
+    }
+}

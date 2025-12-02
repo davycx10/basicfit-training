@@ -1,0 +1,310 @@
+/* =========================================
+   FICHIER STYLES - PROGRAMMES
+   =========================================
+   Gère tout ce qui concerne les pages
+   de programmes (Prise de masse, Sèche, 
+   Remise en forme):
+   - Bannière héro avec image de fond
+   - Layout 2 colonnes (contenu + sidebar)
+   - Tableaux d'exercices
+   - Cartes de résumé sticky
+   - Zones verrouillées
+   ========================================= */
+
+/* =========================================
+   1. IMAGES DE FOND (Associées aux programmes)
+   ========================================= */
+
+/* Image pour la prise de masse */
+.bg-prise_masse {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                      url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1920&auto=format&fit=crop');
+}
+
+/* Image pour la sèche */
+.bg-seche {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                      url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1920&auto=format&fit=crop');
+}
+
+/* Image pour la remise en forme */
+.bg-remise_forme {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                      url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1920&auto=format&fit=crop');
+}
+
+/* =========================================
+   2. BANNIÈRE HÉRO DES PROGRAMMES
+   ========================================= */
+
+/* Bannière avec image de fond */
+.prog-hero {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+/* Badge d'en-tête (Ex: "Prise de masse") */
+.badge-hero {
+    background: #fe7000;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+/* =========================================
+   3. LAYOUT 2 COLONNES (Contenu + Sidebar)
+   ========================================= */
+
+/* Conteneur principal pour le layout asymétrique */
+.prog-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+/* Colonne principale (contenu du programme) */
+.prog-main {
+    flex: 2; /* Prend 2/3 de la largeur */
+    min-width: 300px;
+}
+
+/* Colonne secondaire (résumé et infos) */
+.prog-sidebar {
+    flex: 1; /* Prend 1/3 de la largeur */
+    min-width: 300px;
+}
+
+/* Description du programme */
+.prog-desc {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   4. TABLEAUX DE PROGRAMMES
+   ========================================= */
+
+/* Wrapper pour rendre les tableaux scrollables sur mobile */
+.table-wrapper {
+    overflow-x: auto; /* Scroll si sur mobile */
+}
+
+.prog-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.prog-table th {
+    background: #333;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+.prog-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.prog-table tr:nth-child(even) {
+    background-color: #fcfcfc; /* Une ligne sur deux un peu grise */
+}
+
+/* =========================================
+   5. CARTE RÉSUMÉ STICKY (Sidebar droit)
+   ========================================= */
+
+/* Carte principale du résumé */
+.summary-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-top: 5px solid #fe7000;
+    position: sticky; /* Reste affiché quand on scroll */
+    top: 100px; /* Décalage par rapport au haut */
+}
+
+/* Liste du résumé */
+.summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.summary-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Icône dans le résumé (cercle) */
+.summary-list .icon {
+    font-size: 1.5em;
+    margin-right: 15px;
+    background: #fff4e6;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.summary-list strong {
+    display: block;
+    color: #333;
+}
+
+.summary-list small {
+    color: #fe7000;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* =========================================
+   6. ZONES VERROUILLÉES (Contenu restreint)
+   ========================================= */
+
+/* Conteneur d'une zone verrouillée */
+.locked-content {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 5px solid #fe7000;
+    margin-top: 20px;
+}
+
+/* Zone verrouillée complète (pour les programmes non accessibles) */
+.locked-overlay {
+    text-align: center;
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+}
+
+.lock-icon {
+    font-size: 3em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   7. CARTES DÉCOUVERTE (Image + Texte côte à côte)
+   ========================================= */
+
+/* Carte longue horizontale */
+.discover-card {
+    display: flex; /* Met l'image et le texte côte à côte */
+    background: white;
+    border-radius: 15px;
+    overflow: hidden; /* Empêche l'image de dépasser */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    border-left: 8px solid #fe7000; /* Belle ligne orange sur le côté */
+    min-height: 350px;
+}
+
+/* Partie Image (Gauche) */
+.discover-image {
+    flex: 1; /* Prend 50% de la largeur */
+    
+    /* On force une hauteur minimale pour être sûr qu'elle s'affiche */
+    min-height: 400px; 
+    
+    background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Partie Texte (Droite) */
+.discover-content {
+    flex: 1; /* Prend 50% de la largeur */
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre verticalement */
+    align-items: flex-start; /* Aligne le texte à gauche */
+    text-align: left;
+}
+
+.discover-content h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.discover-content p {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* RESPONSIVE : Sur mobile, on empile l'image au-dessus du texte */
+@media (max-width: 768px) {
+    .discover-card {
+        flex-direction: column;
+    }
+    .discover-image {
+        height: 250px; /* Hauteur fixe sur mobile */
+        width: 100%;
+    }
+    .discover-content {
+        padding: 30px;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* Style pour les tables de programmes */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden; /* Pour que les coins ronds marchent sur le header */
+}
+
+.custom-table th {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+.custom-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+
+.custom-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Style pour que la carte prenne toute la largeur en mode détail */
+.full-width-card {
+    width: 100% !important; /* Force la largeur */
+    max-width: 100%;
+}

@@ -1,0 +1,426 @@
+/* =========================================
+   FICHIER STYLES - COACH
+   =========================================
+   Gère tous les styles de l'interface
+   coach:
+   - Bannière d'entête avec stats
+   - Cartes modernes pour les demandes clients
+   - Badges et statuts
+   - Grilles de données
+   - Actions et interactions
+   ========================================= */
+
+/* =========================================
+   1. BANNIÈRE D'ENTÊTE MODERNE
+   ========================================= */
+
+/* Bannière principale du dashboard coach */
+.dashboard-banner {
+    background: white;
+    padding: 35px 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    border-left: 6px solid #fe7000;
+}
+
+/* Partie information (titre + description) */
+.banner-info h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #222;
+}
+
+.banner-info p {
+    margin: 8px 0 0;
+    color: #777;
+    font-size: 1.1em;
+}
+
+/* Partie statistique (à droite) */
+.banner-stat {
+    text-align: right;
+    background: #fffaf5; /* Orange très pâle */
+    padding: 15px 25px;
+    border-radius: 12px;
+}
+
+.banner-stat .stat-label {
+    display: block;
+    font-size: 0.9em;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.banner-stat .stat-value.orange {
+    font-size: 1.5em;
+    color: #fe7000;
+    font-weight: 800;
+}
+
+/* =========================================
+   2. TITRES DE SECTION AVEC BADGE DE COMPTEUR
+   ========================================= */
+
+/* Titre de section avec badge */
+.section-title-modern {
+    font-size: 1.6em;
+    color: #333;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Badge de compteur (nombre de clients) */
+.count-badge {
+    background: #eee;
+    color: #555;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7em;
+    vertical-align: middle;
+}
+
+.count-badge.gray {
+    background: #e0e0e0;
+}
+
+/* =========================================
+   3. SÉPARATEUR VISUEL
+   ========================================= */
+
+/* Séparateur horizontal subtle */
+.section-separator {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ddd, transparent);
+    margin: 60px 0;
+}
+
+/* =========================================
+   4. CARTES MODERNES
+   ========================================= */
+
+/* Carte moderne de base */
+.modern-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.modern-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+/* =========================================
+   5. STRUCTURE INTERNE DE LA CARTE
+   ========================================= */
+
+/* En-tête de la carte (info client) */
+.modern-card-header {
+    padding: 20px 25px;
+    background: #fff;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Identité du client */
+.client-identity h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.3em;
+}
+
+.client-goal, .client-email {
+    font-size: 0.95em;
+    color: #fe7000;
+    font-weight: 600;
+    display: block;
+}
+
+.client-email {
+    color: #777;
+    transition: 0.3s;
+}
+
+.client-email:hover {
+    color: #fe7000;
+    text-decoration: underline;
+}
+
+/* Badge de statut */
+.badge-modern {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-modern.new {
+    background: #e6fcf5;
+    color: #0ca678;
+}
+
+.badge-modern.orange {
+    background: #fff4e6;
+    color: #fe7000;
+}
+
+/* Corps de la carte */
+.modern-card-body {
+    padding: 25px;
+    flex-grow: 1;
+    background: #fcfcfc;
+}
+
+/* =========================================
+   6. GRILLE DE STATISTIQUES INTERNES
+   ========================================= */
+
+/* Grille 3 colonnes pour les stats */
+.card-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Élément de statistique */
+.stat-item {
+    text-align: center;
+    background: white;
+    padding: 15px 10px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+/* Stat sur toute la largeur (pour certains éléments) */
+.stat-item.full-width-stat {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+}
+
+.stat-item .icon {
+    font-size: 1.4em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-item .label {
+    font-size: 0.8em;
+    color: #999;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+}
+
+.stat-item .value {
+    font-weight: 700;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.stat-item .value.small {
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+/* =========================================
+   7. BLOCS D'INFORMATION
+   ========================================= */
+
+/* Bloc d'info générique */
+.info-block {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.info-block p {
+    margin: 5px 0 0;
+}
+
+/* Citation / Motivation du client */
+.motivation-quote {
+    background: #fffbf6; /* Orange très très pâle */
+    padding: 20px 25px;
+    border-radius: 12px;
+    font-style: italic;
+    color: #666;
+    position: relative;
+    border-left: 4px solid #fe7000;
+}
+
+/* Guillemets en arrière-plan */
+.motivation-quote::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 3em;
+    color: rgba(254, 112, 0, 0.1);
+    font-family: serif;
+}
+
+/* =========================================
+   8. LIGNES D'INFORMATION (Email, contact)
+   ========================================= */
+
+/* Ligne avec icône et texte */
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: #f4f4f4;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+
+.info-icon {
+    font-size: 1.2em;
+}
+
+.info-text {
+    font-weight: 500;
+    color: #333;
+}
+
+/* =========================================
+   9. GRILLE DE DONNÉES (Poids, Taille, Objectif)
+   ========================================= */
+
+/* Grille 3 colonnes pour les données du client */
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Élément de donnée */
+.data-item {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-item .lbl {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.data-item .val {
+    font-size: 1em;
+    font-weight: 700;
+    color: #222;
+}
+
+/* =========================================
+   10. SÉPARATEURS ET DIVISEURS
+   ========================================= */
+
+/* Ligne de séparation douce */
+.card-divider {
+    border: 0;
+    border-top: 1px dashed #ddd;
+    margin: 15px 0;
+}
+
+/* Texte petit et italique */
+.small-text {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* =========================================
+   11. FOOTER DE CARTE (Actions)
+   ========================================= */
+
+/* Pied de carte avec boutons */
+.modern-card-footer {
+    padding: 20px 25px;
+    background: white;
+    border-top: 1px solid #f5f5f5;
+}
+
+.btn-modern {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-modern.success {
+    background-color: #27ae60;
+    color: white;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+/* =========================================
+   12. RESPONSIVE - Cartes Coach
+   ========================================= */
+
+@media (max-width: 768px) {
+    .dashboard-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .banner-stat {
+        text-align: center;
+    }
+    
+    .card-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .data-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .modern-card-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .card-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,140 @@
+/* =========================================
+   FICHIER STYLES - HERO & SECTIONS
+   =========================================
+   Gère les bannières et sections principales:
+   - Bannière héro avec image
+   - Section concept
+   - Section programmes
+   - Section coach
+   ========================================= */
+
+/* =========================================
+   1. SECTION HERO (BANNIÈRE AVEC IMAGE)
+   ========================================= */
+.hero {
+    /* Image chargée directement depuis Internet (Unsplash) */
+    /* Le linear-gradient sert à assombrir l'image pour qu'on lise le texte */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Effet parralax sympa */
+    height: 600px; /* Hauteur de la bannière */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* Petit trait orange sous le titre */
+.hero h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #fe7000;
+    margin: 20px auto;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    color: #f0f0f0;
+}
+
+/* =========================================
+   2. SECTION CONCEPT
+   ========================================= */
+.concept {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.concept h2 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+/* =========================================
+   3. SECTION PROGRAMMES
+   ========================================= */
+.programmes {
+    padding: 60px 20px 100px;
+    background-color: white;
+}
+
+.programmes h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+}
+
+.programmes-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* CARTES PROGRAMMES */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Ombre douce */
+    border-top: 5px solid #fe7000; /* Ligne colorée en haut de la carte */
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Animation au survol */
+}
+
+.card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.95em;
+}
+
+/* =========================================
+   4. SECTION COACH (FONCÉE)
+   ========================================= */
+.section-coach {
+    background-color: #222; /* Très foncé */
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); /* Petite texture carbone subtile */
+}
+
+.section-coach h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.section-coach p {
+    color: #bbb;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
