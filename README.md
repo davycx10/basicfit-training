@@ -1,133 +1,142 @@
+Parfait, je vais fusionner les deux textes en un seul document cohérent, **sans emojis inutiles**, en évitant les répétitions mais en gardant toutes les informations importantes. Voici la version finale :
 
 ---
 
-#  BasicFit
+# BasicFit – Projet CFA INSTA – Client Léger  
+## Plateforme de Formation et de Coaching Sportif
 
-### Projet CFA INSTA – Client Léger
+### Contexte du projet
+Le projet **Basic-Fit Training** est une plateforme web développée dans le cadre d’un projet étudiant du CFA INSTA.  
+Son objectif est de mettre en relation les adhérents Basic-Fit et les coachs sportifs, selon leurs objectifs personnels, tout en proposant une expérience interactive et motivante.  
 
----
+La plateforme permet aux utilisateurs de suivre des programmes d’entraînement en ligne, adaptés à leurs besoins :  
+- Perte de poids  
+- Prise de masse  
+- Remise en forme  
+- Maintien d’une activité physique régulière  
 
-##  Basic-Fit – Plateforme de Formation Sportive
-
-###  Description du projet
-
-Ce projet étudiant a pour objectif de concevoir un **site web de formation sportive** dédié aux adhérents **Basic-Fit**.
-La plateforme permet aux utilisateurs de **suivre des programmes d’entraînement en ligne**, adaptés à leurs objectifs personnels :
-
-*  Perte de poids 
-*  Prise de masse
-*  Remise en forme
-*  Maintien d’une activité physique régulière
-
-Le site propose une expérience interactive et motivante grâce à :
-
-* des **exercices illustrés** étape par étape,
-* des **vidéos explicatives** réalisées par des coachs,
-* des **conseils personnalisés** selon le profil et les objectifs de l’utilisateur,
-* un **suivi de progression** pour mesurer les résultats dans le temps.
-
-L’objectif principal est d’aider les membres Basic-Fit à **optimiser leurs entraînements**, même en dehors de la salle, grâce à un **accompagnement digital simple, accessible et motivant**.
-
----
-## Design et ergonomie
-
-Le design du site repose sur le framework Bootstrap
-, afin d’assurer :
-
-une interface moderne et responsive,
-
-une cohérence visuelle sur tous les supports (ordinateur, tablette, mobile),
-
-et un développement rapide et structuré des composants graphiques.
-
-L’utilisation de Bootstrap permet de garantir une expérience utilisateur fluide et conforme aux standards du web actuel (et surtout pour gagner du temps).
-
-##  Objectif pédagogique
-
-Ce projet s’inscrit dans le cadre d’un **projet étudiant du CFA INSTA**, visant à mettre en pratique les compétences en :
-
-* développement web,
-* conception et modélisation de base de données,
-* architecture MVC,
-* UX/UI design,
-* et gestion de projet numérique.
-
-Il illustre la conception d’une plateforme complète alliant **sport, technologie et expérience utilisateur**.
+L’accent est mis sur la simplicité d’utilisation, la personnalisation du suivi et une navigation claire entre les trois rôles principaux : **client, coach et administrateur**.  
+Le site est pensé pour être intuitif, fluide et responsive, utilisable aussi bien sur ordinateur que sur mobile.
 
 ---
 
-##  Structure du projet
+### Fonctionnement général
+Lorsqu’un visiteur arrive sur le site, il découvre la présentation du concept Basic-Fit Training et les différents types de coaching proposés.  
+Pour accéder au service, il doit créer un compte utilisateur via un formulaire d’inscription comprenant :  
+- Nom, prénom, adresse e-mail, mot de passe  
+- Poids, taille, objectif sportif  
+- Jours de disponibilité (minimum 3, maximum 5 par semaine)  
+- Créneaux horaires disponibles (matin, midi, soir)  
+- Une courte description personnelle (motivation, attentes, etc.)  
 
-Le projet est organisé selon une **architecture MVC (Modèle – Vue – Contrôleur)**, qui permet une meilleure séparation du code et une maintenance facilitée.
-Chaque dossier a un rôle précis :
-
-###  **/bdd/**
-
-Contient tous les fichiers liés à la **base de données** (scripts SQL, fichiers de connexion, etc.).
-
->  **Important :**
-> Lors de la connexion à votre base de données en local, **ajoutez un commentaire** dans le code indiquant **l’ancien lien de connexion** et, si possible, **le nom de la personne à qui il appartenait**.
-> Si vous modifiez le fichier, **stashé le** avant de pousser vos commits sur le dépôt Git pour **éviter de publier des informations sensibles** (identifiants, adresses locales, etc.).
+Une fois validée, la demande est automatiquement envoyée aux coachs correspondant à la spécialité choisie.  
 
 ---
 
-###  **/controller/**
+### Côté coach
+Les coachs peuvent postuler directement via la rubrique **“Postuler comme coach”**.  
+Ils renseignent leurs informations personnelles :  
+- Nom, prénom, adresse e-mail, adresse postale  
+- Spécialité sportive (prise de masse, sèche, remise en forme)  
+- Dépôt de leur CV  
 
-Contient les **contrôleurs** gérant la logique entre le modèle (données) et la vue (interface utilisateur).
+Toutes les candidatures sont vérifiées par l’administrateur.  
+Lorsqu’un coach est accepté, il reçoit un mail de confirmation avec ses identifiants et un lien vers l’Espace Coach.  
 
-> Exemple :
-> Vous pouvez rencontrer une URL du type :
-> `http://localhost/chauffeurs/index.php?page=accueil`(ceci n'est qu'un exemple)
->
-> Cette ligne peut varier selon les environnements locaux.
-> Pensez donc à **commenter l’ancien lien** ou à **stashé le fichier** avant de le pousser sur le dépôt afin d’éviter tout conflit ou mauvaise redirection entre développeurs.
+Dans cet espace, le coach peut :  
+- Consulter les demandes en attente correspondant à sa spécialité  
+- Accepter ou refuser une demande  
+- Gérer la liste de ses clients attribués  
+- Voir les informations complètes de chaque client (objectif, jours, créneaux, motivation)  
 
----
-
-###  **/model/**
-
-Contient les **modèles** : la couche responsable de la gestion des données (connexion à la base, requêtes SQL, etc.).
-
-Les modèles communiquent avec les contrôleurs pour envoyer ou récupérer les informations nécessaires à l’application.
-
----
-
-###  **/view/**
-
-Regroupe les **vues**, c’est-à-dire les pages visibles par l’utilisateur (HTML, CSS, JS, etc.).
-Elles affichent les données transmises par les contrôleurs.
+Lorsqu’un coach accepte une demande :  
+- Elle disparaît automatiquement des autres coachs de la même spécialité  
+- Le client devient officiellement rattaché à ce coach  
+- Il apparaît dans la section **“Mes clients”** du coach  
 
 ---
 
-###  **/docs/**
+### Espace client
+Une fois sa demande acceptée, le client accède à son tableau de bord personnel, où il peut voir :  
+- Les informations de son coach (nom, e-mail, téléphone)  
+- Les jours et horaires d’entraînement choisis lors de l’inscription  
+- Le statut de sa demande (“Acceptée”)  
 
-Dossier réservé à la **documentation du projet**.
-Vous pouvez y placer :
-
-* des fichiers expliquant le fonctionnement de certaines parties du code,
-* le MCD ou le schéma de la base de données,
-* des notes techniques ou consignes de développement.
-
----
-
-##  À propos du MCD
-
-Le **MCD (Modèle Conceptuel de Données)** est une représentation schématique des données utilisées dans le projet.
-Il permet de définir :
-
-* les **entités** (ex. : Utilisateur, Programme, Exercice, Objectif…),
-* leurs **attributs** (ex. : nom, âge, email…),
-* et les **relations** entre elles (ex. : un utilisateur peut suivre plusieurs programmes).
-
-Le MCD est une étape essentielle pour structurer la base de données avant sa mise en œuvre technique.
-le faire et le mettre de le dossier MCD
+Cette interface simple et claire permet au client de suivre son emploi du temps et de contacter son coach en cas de besoin.  
 
 ---
 
-##  Bonnes pratiques de collaboration
+### Espace administrateur
+L’administrateur dispose d’un espace de gestion complet. Il peut :  
+- Gérer les candidatures des coachs  
+- Accepter ou refuser les coachs  
+- Créer les comptes et envoyer les mails d’accès  
+- Consulter, modifier ou supprimer les comptes clients et coachs  
+- Superviser toutes les demandes en cours et les attributions coach–client  
 
-* Ne **poussez jamais vos fichiers de configuration locale** (base de données, chemins spécifiques…) (ou commenter le).
-* Utilisez les **commentaires** pour indiquer vos modifications locales.
-* **Stashez** les fichiers sensibles avant de faire un commit.
-* Respectez la structure MVC pour garder le projet clair et maintenable.
+Cet espace garantit une organisation claire et un contrôle total du fonctionnement de la plateforme.  
 
+---
+
+### Design et ergonomie
+Le design du site repose sur le framework **Bootstrap**, afin d’assurer :  
+- Une interface moderne et responsive  
+- Une cohérence visuelle sur tous les supports (ordinateur, tablette, mobile)  
+- Un développement rapide et structuré des composants graphiques  
+
+L’utilisation de Bootstrap permet de garantir une expérience utilisateur fluide et conforme aux standards du web actuel.  
+
+---
+
+### Objectif pédagogique
+Ce projet s’inscrit dans le cadre d’un projet étudiant du CFA INSTA, visant à mettre en pratique les compétences en :  
+- Développement web  
+- Conception et modélisation de base de données  
+- Architecture MVC  
+- UX/UI design  
+- Gestion de projet numérique  
+
+Il illustre la conception d’une plateforme complète alliant sport, technologie et expérience utilisateur.  
+
+---
+
+### Structure du projet
+Le projet est organisé selon une architecture **MVC (Modèle – Vue – Contrôleur)**, qui permet une meilleure séparation du code et une maintenance facilitée.  
+
+- `/bdd/` → fichiers liés à la base de données (scripts SQL, connexion, etc.)  
+- `/controller/` → logique entre modèle et vue  
+- `/model/` → gestion des données et requêtes SQL  
+- `/view/` → pages visibles par l’utilisateur (HTML, CSS, JS)  
+- `/docs/` → documentation du projet (MCD, schéma de base, notes techniques)  
+
+#### À propos du MCD
+Le **Modèle Conceptuel de Données (MCD)** définit :  
+- Les entités (Utilisateur, Programme, Exercice, Objectif…)  
+- Leurs attributs (nom, âge, email…)  
+- Les relations entre elles (ex. : un utilisateur peut suivre plusieurs programmes)  
+
+Le MCD est une étape essentielle pour structurer la base de données avant sa mise en œuvre technique.  
+
+---
+
+### Bonnes pratiques de collaboration
+- Ne poussez jamais vos fichiers de configuration locale (base de données, chemins spécifiques…)  
+- Commentez vos modifications locales  
+- Stashez les fichiers sensibles avant de faire un commit  
+- Respectez la structure MVC pour garder le projet clair et maintenable  
+
+---
+
+### Objectif et valeur ajoutée
+Le projet Basic-Fit Training modernise la relation entre coachs et adhérents Basic-Fit grâce à un système automatisé, fluide et efficace.  
+Chaque utilisateur définit ses disponibilités dès l’inscription, ce qui rend la mise en relation rapide et pertinente.  
+Les coachs disposent d’un espace clair pour gérer leurs clients, tandis que les administrateurs supervisent l’ensemble du site.  
+
+Ce projet se distingue par :  
+- Sa simplicité d’utilisation  
+- Sa logique fonctionnelle bien pensée  
+- Son potentiel d’évolution (ajout futur de messagerie, suivi d’abonnements, statistiques, etc.)  
+
+**Basic-Fit Training relie efficacement clients, coachs et administrateurs autour d’un objectif commun : rendre l’entraînement plus accessible, encadré et motivant.**
+
+---
