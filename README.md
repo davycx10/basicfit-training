@@ -81,30 +81,18 @@ Le design du site repose sur le framework **Bootstrap**, afin d’assurer :
 - Une cohérence visuelle sur tous les supports (ordinateur, tablette, mobile)  
 - Un développement rapide et structuré des composants graphiques  
 
-L’utilisation de Bootstrap permet de garantir une expérience utilisateur fluide et conforme aux standards du web actuel.  
-
----
-
-### Objectif pédagogique
-Ce projet s’inscrit dans le cadre d’un projet étudiant du CFA INSTA, visant à mettre en pratique les compétences en :  
-- Développement web  
-- Conception et modélisation de base de données  
-- Architecture MVC  
-- UX/UI design  
-- Gestion de projet numérique  
-
-Il illustre la conception d’une plateforme complète alliant sport, technologie et expérience utilisateur.  
+L’utilisation de Bootstrap permet de garantir une expérience utilisateur fluide et conforme aux standards du web actuel.   
 
 ---
 
 ### Structure du projet
 Le projet est organisé selon une architecture **MVC (Modèle – Vue – Contrôleur)**, qui permet une meilleure séparation du code et une maintenance facilitée.  
 
-- `/bdd/` → fichiers liés à la base de données (scripts SQL, connexion, etc.)  
+- `/bdd/` → fichiers liés à la base de données  
 - `/controller/` → logique entre modèle et vue  
 - `/model/` → gestion des données et requêtes SQL  
-- `/view/` → pages visibles par l’utilisateur (HTML, CSS, JS)  
-- `/docs/` → documentation du projet (MCD, schéma de base, notes techniques)  
+- `/view/` → pages visibles par l’utilisateur   
+- `/docs/` → documentation du projet 
 
 #### À propos du MCD
 Le **Modèle Conceptuel de Données (MCD)** définit :  
