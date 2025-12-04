@@ -1,38 +1,62 @@
--- 1. CRÉATION DE LA BASE DE DONNÉES-----------------
-CREATE DATABASE IF NOT EXISTS fitconnect CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- 1. CRÉATION DE LA BASE DE DONNÉES -----------------
+CREATE DATABASE IF NOT EXISTS fitconnect 
+    CHARACTER SET utf8mb4 
+    COLLATE utf8mb4_unicode_ci;
 USE fitconnect;
 
--- 2. CRÉATION DE LA TABLE COACH-----------------
-CREATE TABLE IF NOT EXISTS coach (
-    id_coach INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    mail VARCHAR(100) NOT NULL UNIQUE,
-    mot_de_passe VARCHAR(255) NULL, -- rempli lors de l'inscription/activation du compte
-    adresse VARCHAR(255) NOT NULL,
-    basic_fit TINYINT(1) DEFAULT 0, -- 0 = Non, 1 = Oui
-    specialite VARCHAR(50) NOT NULL, -- 'prise_masse', 'seche', 'remise_forme'
-    cv VARCHAR(255) NOT NULL,
-    valide TINYINT(1) DEFAULT 0 --  utile pour activer les comptes coachs manuellement 
-) ENGINE=InnoDB;
+-- 2. TABLE DES COACHS VALIDÉS -----------------
+CREATE TABLE coach (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Identifiant unique du coach
+    nom VARCHAR(100) NOT NULL,          -- Nom du coach
+    prenom VARCHAR(100) NOT NULL,       -- Prénom du coach
+    email VARCHAR(150) UNIQUE NOT NULL, -- Email professionnel, unique
+    adresse VARCHAR(255) NOT NULL,      -- Adresse postale
+    basic_fit TINYINT(1) NOT NULL,      -- 1 = déjà coach Basic-Fit, 0 = externe
+    specialite ENUM('prise_masse','seche','remise_forme') NOT NULL, 
+    experience INT NOT NULL, 
+    cv_pdf VARCHAR(255) NOT NULL, 
+    linkedin VARCHAR(255), 
+    password VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 3. CRÉATION DE LA TABLE CLIENT ---------------
-CREATE TABLE IF NOT EXISTS client (
+-- 3. TABLE DES CANDIDATS COACH -----------------
+CREATE TABLE candidat (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Identifiant unique du candidat
+    nom VARCHAR(100) NOT NULL, 
+    prenom VARCHAR(100) NOT NULL, 
+    email VARCHAR(150) UNIQUE NOT NULL, 
+    adresse VARCHAR(255) NOT NULL, 
+    basic_fit TINYINT(1) NOT NULL, 
+    specialite ENUM('prise_masse','seche','remise_forme') NOT NULL, 
+    experience INT NOT NULL, 
+    cv_pdf VARCHAR(255) NOT NULL, 
+    linkedin VARCHAR(255), 
+    password VARCHAR(255) NOT NULL, 
+    statut ENUM('en_attente','valide','refuse') DEFAULT 'en_attente', 
+    date_candidature TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 4. TABLE DES CLIENTS -----------------
+CREATE TABLE client (
     id_client INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     mail VARCHAR(100) NOT NULL UNIQUE,
-    mot_de_passe VARCHAR(255) NOT NULL,
+    mot_de_passe   VARCHAR(255) NOT NULL,
     poids INT NOT NULL,
     taille INT NOT NULL,
+    genre ENUM('homme','femme','autre','prefere_pas','croissant') NOT NULL, 
     basic_fit TINYINT(1) DEFAULT 0,
-    objectif VARCHAR(50) NOT NULL, -- Doit correspondre à la spécialité du coach
-    dispo_jours TEXT NOT NULL, -- Ex: "Lundi, Mardi"
-    dispo_creneaux VARCHAR(255) NULL, -- dans le cas où on stocke des créneaux horaires plus tard(matin, après-midi, soir)
+    objectif VARCHAR(50) NOT NULL, 
+    dispo_jours TEXT NULL, 
+    dispo_creneaux VARCHAR(255) NULL, 
     motivation TEXT NOT NULL,
-    id_coach INT NULL, -- Clé étrangère vers le coach (NULL au début)
-    CONSTRAINT fk_client_coach FOREIGN KEY (id_coach) REFERENCES coach(id_coach) ON DELETE SET NULL
-) ENGINE=InnoDB;
+    date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_coach INT NULL,
+    CONSTRAINT fk_client_coach
+        FOREIGN KEY (id_coach) REFERENCES coach(id)
+        ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 4. CRÉATION DE LA TABLE PROGRAMME ---------------
 -- (Sert de référence pour stocker les programmes en dur plus tard)
@@ -175,9 +199,9 @@ INSERT INTO programme (nom, type, description) VALUES
 
 -- A. COACHS (Mot de passe pour tester : "1234")
 -- Le hash ci-dessous correspond à "1234".
-INSERT INTO coach (nom, prenom, mail, mot_de_passe, adresse, basic_fit, specialite, cv, valide) VALUES 
-('Durand', 'Paul', 'paul.coach@mail.com', '$2y$10$g5/1.2.3.4.hash.pour.1234.correspondant.a.bcrypt', 'Paris', 1, 'prise_masse', 'cv_paul.pdf', 1),
-('Martin', 'Julie', 'julie.coach@mail.com', '$2y$10$g5/1.2.3.4.hash.pour.1234.correspondant.a.bcrypt', 'Lyon', 1, 'seche', 'cv_julie.pdf', 1);
+-- INSERT INTO coach (nom, prenom, mail, mot_de_passe, adresse, basic_fit, specialite, cv, valide) VALUES 
+-- ('Durand', 'Paul', 'paul.coach@mail.com', '$2y$10$g5/1.2.3.4.hash.pour.1234.correspondant.a.bcrypt', 'Paris', 1, 'prise_masse', 'cv_paul.pdf', 1),
+-- ('Martin', 'Julie', 'julie.coach@mail.com', '$2y$10$g5/1.2.3.4.hash.pour.1234.correspondant.a.bcrypt', 'Lyon', 1, 'seche', 'cv_julie.pdf', 1);
 
 -- Note technique : Le hash ci-dessus est fictif pour l'exemple. 
 -- Pour tester la connexion coach, je te conseille de modifier le mot de passe 
@@ -185,5 +209,5 @@ INSERT INTO coach (nom, prenom, mail, mot_de_passe, adresse, basic_fit, speciali
 
 -- B. CLIENT (Sans coach, pour tester le matching)
 -- Mot de passe : "1234" (Hash valide généré par PHP pour "1234")
-INSERT INTO client (nom, prenom, mail, mot_de_passe, poids, taille, basic_fit, objectif, dispo_jours, motivation, id_coach) VALUES 
-('Dupont', 'Thomas', 'thomas.client@mail.com', '$2y$10$HuW7/..GENERIC.HASH.FOR.1234..EXAMPLE', 80, 180, 1, 'prise_masse', 'Lundi, Jeudi', 'Motivation max', NULL);      
+-- INSERT INTO client (nom, prenom, mail, mot_de_passe, poids, taille, basic_fit, objectif, dispo_jours, motivation, id_coach) VALUES 
+-- ('Dupont', 'Thomas', 'thomas.client@mail.com', '$2y$10$HuW7/..GENERIC.HASH.FOR.1234..EXAMPLE', 80, 180, 1, 'prise_masse', 'Lundi, Jeudi', 'Motivation max', NULL);      

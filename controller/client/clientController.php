@@ -1,40 +1,43 @@
 <?php
 
-require_once('model/client/clientModel.php');
-// Ces modèles sont indispensables pour le dashboard
-require_once('model/coach/coachModel.php');
-require_once('model/programme/programmeModel.php');
+    session_start();
 
-if (isset($_POST['action'])) {
+     include('../../bdd/bdd.php');
 
-    $clientController = new ClientController($bdd);
+    require_once('../../model/client/clientModel.php');
+    require_once('../../model/coach/coachModel.php');
+    require_once('../../model/programme/programmeModel.php');
 
-    switch ($_POST['action']) {
-        case 'ajouter': 
-            $clientController->create();
-            break;
+    if (isset($_POST['action'])) {
 
-        case 'connexion': 
-            $clientController->login();
-            break;
+        $clientController = new ClientController($bdd);
 
-        case 'deconnexion': 
-            $clientController->logout();
-            break;
+        switch ($_POST['action']) {
+            case 'ajouter': 
+                $clientController->create();
+                break;
 
-        case 'update':
-            $clientController->update();
-            break;
+            case 'connexion': 
+                $clientController->login();
+                break;
 
-        case 'supprimer':
-            $clientController->delete();
-            break;
+            case 'deconnexion': 
+                $clientController->logout();
+                break;
 
-        default:
-            header('Location: index.php?page=espace_client');
-            break;
+            case 'update':
+                $clientController->update();
+                break;
+
+            case 'supprimer':
+                $clientController->delete();
+                break;
+
+            default:
+                header('Location: index.php?page=espace_client');
+                break;
+        }
     }
-}
 
 class ClientController {
 
@@ -46,96 +49,124 @@ class ClientController {
         $this->client = new Client($bdd);
     }
 
+    /*
+      create()
+      - Inscription d’un nouveau client
+      - Hashage du mot de passe
+      - Insertion via clientModel
+    */
     public function create() {
-        $mdpHash = password_hash($_POST['motdepasse'], PASSWORD_DEFAULT);
-
+        // $mdpHash = password_hash($_POST['motdepasse'], PASSWORD_BCRYPT);
         $this->client->ajouterClient(
             $_POST['nom'],
             $_POST['prenom'],
             $_POST['mail'],
-            $mdpHash, 
+            $_POST['motdepasse'],   // mot de passe brut du formulaire
             $_POST['poids'],
             $_POST['taille'],
+            $_POST['genre'],
             $_POST['basic_fit'],
             $_POST['objectif'],
-            // Dispo a été retiré comme demandé
-            $_POST['description']
+            $_POST['motivation']
         );
 
-        header('Location: index.php?page=connexion_client');
+         echo "<script>alert('Vous avez bien été inscrit, mtn connecter vous .');</script>";
+        // var_dump("Client ajouté avec succès.");
+
+        header('Location: http://localhost/basicfit-training/index.php?page=connexion_client');
         exit;
     }
 
-
+    /*
+      login()
+      - Authentifie un client avec email + mot de passe
+      - Vérifie le hash avec password_verify
+    */
     public function login() {
         $user = $this->client->getClientByEmail($_POST['mail']);
 
         if ($user && password_verify($_POST['motdepasse'], $user['mot_de_passe'])) {
-            
             $_SESSION['id_client'] = $user['id_client'];
             $_SESSION['prenom'] = $user['prenom'];
             $_SESSION['role'] = 'client';
 
-            header('Location: index.php?page=espace_client');
+            header('Location: http://localhost/basicfit-training/index.php?page=espace_client');
             exit;
         } else {
-            header('Location: index.php?page=connexion_client&error=1');
+            header('Location: http://localhost/basicfit-training/index.php?page=connexion_client&error=1');
             exit;
         }
     }
 
+    /*
+      logout()
+      - Déconnecte le client
+    */
     public function logout() {
         session_destroy();
-        header('Location: index.php');
+        header('Location: http://localhost/basicfit-training/index.php?page=accueil');
         exit;
     }
 
+    /*
+      dashboard()
+      - Charge les infos client, coach associé et programme
+    */
     public function dashboard() {
         if (!isset($_SESSION['id_client'])) {
-            header('Location: index.php?page=connexion_client');
+            header('Location: http://localhost/basicfit-training/index.php?page=connexion_client');
             exit;
         }
 
-        // 1. Infos Client
         $monProfil = $this->client->selectById($_SESSION['id_client']);
 
-        // 2. Infos Coach (si existe)
         $monCoach = null;
-        if ($monProfil['id_coach']) {
+        if (!empty($monProfil['id_coach'])) {
             $coachModel = new Coach($this->bdd);
             $monCoach = $coachModel->selectById($monProfil['id_coach']);
         }
 
-        // 3. Infos Programme
         $progModel = new Programme($this->bdd);
-        // On récupère le programme qui correspond à l'objectif du client
         $monProgramme = $progModel->getProgrammeByType($monProfil['objectif']);
 
         require('view/client/espaceClient.php');
     }
 
+    /*
+      update()
+      - Met à jour les infos du client
+      - Hashage du mot de passe si modifié
+    */
     public function update() {
+        $mdpHash = password_hash($_POST['motdepasse'], PASSWORD_BCRYPT);
+
         $this->client->modifierClient(
             $_POST['id_client'],
             $_POST['nom'],
             $_POST['prenom'],
             $_POST['mail'],
-            $_POST['motdepasse'],
+            $mdpHash,
             $_POST['poids'],
             $_POST['taille'],
+            $_POST['genre'],       // 🔥 ajouté
             $_POST['basic_fit'],
             $_POST['objectif'],
-            $_POST['description']
+            $_POST['motivation']
         );
 
-        header('Location: index.php?page=espace_client');  // Redirige vers le tableau de bord du client (à adapter si nécessaire)
+        header('Location: index.php?page=espace_client');
         exit;
     }
 
+    /*
+      delete()
+      - Supprime le client
+    */
     public function delete() {
         $this->client->supprimerClient($_POST['id_client']);
-        header('Location: index.php');
+        header('Location: index.php?page=accueil');
         exit;
     }
+    
 }
 ?>

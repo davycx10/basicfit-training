@@ -57,7 +57,7 @@
                             <i class="bi bi-person-badge"></i> Coach
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="coachDropdown">
-                            <li><a class="dropdown-item" href="index.php?page=inscription_coach"><i class="bi bi-person-plus"></i> Inscription Coach</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=inscription_coach"><i class="bi bi-person-plus"></i> Postuler comme coach </a></li>
                             <li><a class="dropdown-item" href="index.php?page=connexion_coach"><i class="bi bi-box-arrow-in-right"></i> Connexion Coach</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="index.php?page=espace_coach"><i class="bi bi-person-workspace"></i> Espace Coach</a></li>
@@ -85,7 +85,7 @@
                             <span class="navbar-text text-white">Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?></span>
                         </li>
                         <li class="nav-item">
-                            <form action="index.php" method="POST" class="d-inline">
+                            <form action="controller/client/clientController.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="client">
                                 <input type="hidden" name="action" value="deconnexion">
                                 <button type="submit" class="btn btn-outline-light ms-2"><i class="bi bi-box-arrow-left"></i> Déconnexion</button>
@@ -97,7 +97,7 @@
                             <span class="navbar-text text-white">Coach <?= htmlspecialchars($_SESSION['prenom']) ?></span>
                         </li>
                         <li class="nav-item">
-                            <form action="index.php" method="POST" class="d-inline">
+                            <form action="controller/coach/coachController.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="coach">
                                 <input type="hidden" name="action" value="deconnexion">
                                 <button type="submit" class="btn btn-outline-light ms-2"><i class="bi bi-box-arrow-left"></i> Déconnexion</button>

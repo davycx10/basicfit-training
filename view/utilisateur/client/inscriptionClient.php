@@ -1,7 +1,7 @@
 <section class="form-section">
     <div class="form-card" style="max-width: 600px;"> <h2>Inscription Espace Client</h2>
 
-        <form action="index.php" method="POST">
+        <form action="controller/client/clientController.php" method="POST">
             
             <input type="hidden" name="controller" value="client">
             <input type="hidden" name="action" value="ajouter">
@@ -34,10 +34,23 @@
                     <label>Poids (kg) :</label>
                     <input type="number" name="poids" class="form-input" required>
                 </div>
+
                 <div class="form-group" style="flex: 1;">
                     <label>Taille (cm) :</label>
                     <input type="number" name="taille" class="form-input" required>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Quel est votre genre ?</label>
+                <select name="genre" id="genre" class="form-control" required>
+                    <option value="" disabled selected>-- Sélectionnez votre genre --</option>
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                    <option value="autre">Autre</option>
+                    <option value="prefere_pas">Je préfère ne pas répondre</option>
+                    <option value="croissant"> Croissant </option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -60,7 +73,7 @@
 
             <div class="form-group">
                 <label>Description / Motivation :</label>
-                <textarea name="description" class="form-input" placeholder="Parlez-nous de vos attentes..." required></textarea>
+                <textarea name="motivation" class="form-input" placeholder="Parlez-nous de vos attentes..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary full-width">Commencer ma transformation</button>

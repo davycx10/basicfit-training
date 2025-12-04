@@ -1,6 +1,6 @@
-// view/client/espaceClient.php
+<!-- // view/client/espaceClient.php
 --- a/file:///var/www/html/basicfit-training/view/client/espaceClient.php
-+++ b/file:///var/www/html/basicfit-training/view/client/espaceClient.php
++++ b/file:///var/www/html/basicfit-training/view/client/espaceClient.php -->
 
 <div class="container padding-container">
     

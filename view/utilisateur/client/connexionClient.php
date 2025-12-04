@@ -8,7 +8,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="index.php" method="POST">
+        <form action="controller/client/clientController.php" method="POST">
             
             <input type="hidden" name="controller" value="client">
             <input type="hidden" name="action" value="connexion">
