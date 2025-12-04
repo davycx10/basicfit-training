@@ -13,12 +13,19 @@ class Coach {
         $req->execute();
         return $req->fetchAll();
     }
+    // Vérifier si un email existe déjà dans la base de données
+public function emailExiste($mail){
+    $req = $this->bdd->prepare("SELECT COUNT(*) FROM coach WHERE mail = :mail");
+    $req->bindParam(':mail', $mail);
+    $req->execute();
+    return $req->fetchColumn() > 0; // Retourne true si l'email existe, false sinon
+}
 
     // J'ai ajouté basic_fit dans la requête INSERT (c'était manquant)
-    public function ajouterCoach($nom, $prenom, $mail, $adresse, $basic_fit, $specialite, $cv){
+    public function ajouterCoach($nom, $prenom, $mail, $adresse, $basic_fit, $specialite, $cv, $mot_de_passe){
         $req = $this->bdd->prepare("
-            INSERT INTO coach (nom, prenom, mail, adresse, basic_fit, specialite, cv)
-            VALUES (:nom, :prenom, :mail, :adresse, :basic_fit, :specialite, :cv)
+            INSERT INTO coach (nom, prenom, mail, adresse, basic_fit, specialite, cv , mot_de_passe)
+            VALUES (:nom, :prenom, :mail, :adresse, :basic_fit, :specialite, :cv, :mot_de_passe)
         ");
         $req->bindParam(':nom', $nom);
         $req->bindParam(':prenom', $prenom);
@@ -27,27 +34,42 @@ class Coach {
         $req->bindParam(':basic_fit', $basic_fit);
         $req->bindParam(':specialite', $specialite);
         $req->bindParam(':cv', $cv);
+        $req->bindParam(':mot_de_passe', $mot_de_passe);
         return $req->execute();
     }
 
     // J'ai ajouté basic_fit dans la requête UPDATE (c'était manquant)
-    public function modifierCoach($id_coach, $nom, $prenom, $mail, $adresse, $basic_fit, $specialite, $cv){
+    public function modifierCoach($id_coach, $nom, $prenom, $mail, $adresse, $basic_fit, $specialite, $cv, $mot_de_passe = null){
+    // Si un nouveau mot de passe est fourni, on l'inclut dans la requête
+    if ($mot_de_passe !== null) {
+        $req = $this->bdd->prepare("
+            UPDATE coach 
+            SET nom = :nom, prenom = :prenom, mail = :mail, adresse = :adresse, 
+                basic_fit = :basic_fit, specialite = :specialite, cv = :cv, mot_de_passe = :mot_de_passe
+            WHERE id_coach = :id_coach
+        ");
+        $req->bindParam(':mot_de_passe', $mot_de_passe);
+    } else {
+        // Sinon, on ne touche pas au mot de passe
         $req = $this->bdd->prepare("
             UPDATE coach 
             SET nom = :nom, prenom = :prenom, mail = :mail, adresse = :adresse, 
                 basic_fit = :basic_fit, specialite = :specialite, cv = :cv
             WHERE id_coach = :id_coach
         ");
-        $req->bindParam(':id_coach', $id_coach);
-        $req->bindParam(':nom', $nom);
-        $req->bindParam(':prenom', $prenom);
-        $req->bindParam(':mail', $mail);
-        $req->bindParam(':adresse', $adresse);
-        $req->bindParam(':basic_fit', $basic_fit);
-        $req->bindParam(':specialite', $specialite);
-        $req->bindParam(':cv', $cv);
-        return $req->execute();
     }
+    
+    $req->bindParam(':id_coach', $id_coach);
+    $req->bindParam(':nom', $nom);
+    $req->bindParam(':prenom', $prenom);
+    $req->bindParam(':mail', $mail);
+    $req->bindParam(':adresse', $adresse);
+    $req->bindParam(':basic_fit', $basic_fit);
+    $req->bindParam(':specialite', $specialite);
+    $req->bindParam(':cv', $cv);
+    
+    return $req->execute();
+}
 
     public function supprimerCoach($id_coach){
         $req = $this->bdd->prepare("DELETE FROM coach WHERE id_coach = :id_coach");

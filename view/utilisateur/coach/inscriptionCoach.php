@@ -27,17 +27,31 @@
             </div>
 
             <div class="form-group">
+            <label>Mot de passe :</label>
+            <input type="password" name="motdepasse" class="form-input" minlength="8" required>
+            <small style="color:#666;">Minimum 8 caractères</small>
+            </div>
+
+<!-- Champ 2 : Confirmation -->
+<div class="form-group">
+    <label>Confirmer le mot de passe :</label>
+    <input type="password" name="motdepasse_confirm" class="form-input" minlength="8" required>
+</div>
+
+            <div class="form-group">
                 <label>Adresse Postale :</label>
                 <input type="text" name="adresse" class="form-input" placeholder="Ville, Code Postal..." required>
             </div>
 
             <div class="form-group">
-                <label>Êtes-vous coach en salle Basic-Fit ?</label>
-                <select name="basic_fit" class="form-input">
-                    <option value="1">Oui, j'exerce déjà en salle</option>
-                    <option value="0">Non, je suis externe</option>
-                </select>
-            </div>
+    <label>Êtes-vous membre Basic-Fit ?</label>
+    <select name="basic_fit" class="form-input" required>
+        <option value="0">Non</option>
+        <option value="1">Oui</option>
+    </select>
+</div>
+
+            
 
             <div class="form-group">
                 <label>Votre Spécialité (Expertise) :</label>

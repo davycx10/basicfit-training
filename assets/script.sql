@@ -27,8 +27,6 @@ CREATE TABLE IF NOT EXISTS client (
     taille INT NOT NULL,
     basic_fit TINYINT(1) DEFAULT 0,
     objectif VARCHAR(50) NOT NULL, -- Doit correspondre à la spécialité du coach
-    dispo_jours TEXT NOT NULL, -- Ex: "Lundi, Mardi"
-    dispo_creneaux VARCHAR(255) NULL, -- Au cas où tu stockes matin/midi/soir
     motivation TEXT NOT NULL,
     id_coach INT NULL, -- Clé étrangère vers le coach (NULL au début)
     CONSTRAINT fk_client_coach FOREIGN KEY (id_coach) REFERENCES coach(id_coach) ON DELETE SET NULL
