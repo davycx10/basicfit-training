@@ -1,4 +1,7 @@
 <?php
+
+include('bdd/bdd.php');
+
 require_once('model/coach/candidatModel.php');
 
 if (isset($_POST['action'])) {

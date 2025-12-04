@@ -81,28 +81,34 @@
                 <!-- Partie droite : affichage utilisateur connecté -->
                 <ul class="navbar-nav ms-auto">
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'client'): ?>
-                        <li class="nav-item">
-                            <span class="navbar-text text-white">Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?></span>
-                        </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="navbar-text text-white me-3 fs-4">
+                                Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?>
+                            </span>
                             <form action="controller/client/clientController.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="client">
                                 <input type="hidden" name="action" value="deconnexion">
-                                <button type="submit" class="btn btn-outline-light ms-2"><i class="bi bi-box-arrow-left"></i> Déconnexion</button>
+                                <button type="submit" class="btn btn-outline-light">
+                                    <i class="bi bi-box-arrow-left"></i> Déconnexion
+                                </button>
                             </form>
                         </li>
 
                     <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'coach'): ?>
-                        <li class="nav-item">
-                            <span class="navbar-text text-white">Coach <?= htmlspecialchars($_SESSION['prenom']) ?></span>
-                        </li>
-                        <li class="nav-item">
+
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="navbar-text text-white me-3 fs-4">
+                                Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?>
+                            </span>
                             <form action="controller/coach/coachController.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="coach">
                                 <input type="hidden" name="action" value="deconnexion">
-                                <button type="submit" class="btn btn-outline-light ms-2"><i class="bi bi-box-arrow-left"></i> Déconnexion</button>
+                                <button type="submit" class="btn btn-outline-light">
+                                    <i class="bi bi-box-arrow-left"></i> Déconnexion
+                                </button>
                             </form>
                         </li>
+
                     <?php endif; ?>
                 </ul>
             </div>

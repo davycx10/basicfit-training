@@ -1,7 +1,9 @@
 <?php
 
-// Inclusion du modèle Coach (contient la logique BDD)
-require_once('model/coach/coachModel.php');
+    include('bdd/bdd.php');
+    
+    // Inclusion du modèle Coach (contient la logique BDD)
+    require_once('model/coach/coachModel.php');
 
 /*
   POINT D'ENTRÉE POST:

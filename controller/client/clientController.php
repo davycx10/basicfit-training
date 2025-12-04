@@ -1,12 +1,13 @@
+
 <?php
 
-    session_start();
+    // session_start();
 
-     include('../../bdd/bdd.php');
+    include('bdd/bdd.php');
 
-    require_once('../../model/client/clientModel.php');
-    require_once('../../model/coach/coachModel.php');
-    require_once('../../model/programme/programmeModel.php');
+    require_once('model/client/clientModel.php');
+    require_once('model/coach/coachModel.php');
+    require_once('model/programme/programmeModel.php');
 
     if (isset($_POST['action'])) {
 
