@@ -467,3 +467,13 @@
         text-align: center;
     }
 }
+
+
+/* banière  d'alerte */
+.custom-alert {
+  background-color: #fff;        /* fond blanc */
+  color: #000;                   /* texte noir */
+  border: 2px solid #FF6600;     /* contour orange vif Basic-Fit */
+  font-weight: bold;
+  text-align: center;
+}

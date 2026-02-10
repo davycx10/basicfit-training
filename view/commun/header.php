@@ -85,7 +85,7 @@
                             <span class="navbar-text text-white me-3 fs-4">
                                 Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?>
                             </span>
-                            <form action="controller/client/clientController.php" method="POST" class="d-inline">
+                            <form action="index.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="client">
                                 <input type="hidden" name="action" value="deconnexion">
                                 <button type="submit" class="btn btn-outline-light">
@@ -100,7 +100,7 @@
                             <span class="navbar-text text-white me-3 fs-4">
                                 Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?>
                             </span>
-                            <form action="controller/coach/coachController.php" method="POST" class="d-inline">
+                            <form action="index.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="coach">
                                 <input type="hidden" name="action" value="deconnexion">
                                 <button type="submit" class="btn btn-outline-light">

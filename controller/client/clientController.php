@@ -71,8 +71,10 @@ class ClientController {
             $_POST['motivation']
         );
 
-         echo "<script>alert('Vous avez bien été inscrit, mtn connecter vous .');</script>";
-        // var_dump("Client ajouté avec succès.");
+        // echo '<div class="alert custom-alert alert-dismissible fade show" role="alert">
+        //         Inscription réussie ! Veuillez vous connecter.
+        //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        //     </div>';
 
         header('Location: http://localhost/basicfit-training/index.php?page=connexion_client');
         exit;
@@ -104,10 +106,31 @@ class ClientController {
       - Déconnecte le client
     */
     public function logout() {
+        // Vider le tableau $_SESSION
+        $_SESSION = [];
+
+        // Supprimer le cookie de session côté client
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        // Détruire la session côté serveur
         session_destroy();
+
+            // echo '<div class="alert custom-alert alert-dismissible fade show" role="alert">
+            //         Vous êtes déconnecté.
+            //     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            //     </div>';
+
+        // Redirection vers l'accueil
         header('Location: http://localhost/basicfit-training/index.php?page=accueil');
-        exit;
+        exit();
     }
+
 
     /*
       dashboard()

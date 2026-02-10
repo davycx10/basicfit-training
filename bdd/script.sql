@@ -1,42 +1,55 @@
--- 1. CRÉATION DE LA BASE DE DONNÉES -----------------
+-- 1. BASE DE DONNÉES
 CREATE DATABASE IF NOT EXISTS fitconnect 
     CHARACTER SET utf8mb4 
     COLLATE utf8mb4_unicode_ci;
 USE fitconnect;
 
--- 2. TABLE DES COACHS VALIDÉS -----------------
+-- 2. TABLE ADMIN
+CREATE TABLE admin (
+    id_admin INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    mot_de_passe VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- 3. TABLE CANDIDATURE (remplace totalement la table candidat)
+CREATE TABLE candidature (
+    id_candidature INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    adresse VARCHAR(255) NOT NULL,
+    basic_fit TINYINT(1) NOT NULL,
+    specialite ENUM('prise_masse','seche','remise_forme') NOT NULL,
+    experience INT NOT NULL,
+    cv_pdf VARCHAR(255) NOT NULL,
+    linkedin VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    statut ENUM('en_attente','valide','refuse') DEFAULT 'en_attente',
+    date_candidature TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    date_decision TIMESTAMP NULL,
+    id_admin INT NULL,
+    CONSTRAINT fk_candidature_admin
+        FOREIGN KEY (id_admin) REFERENCES admin(id_admin)
+        ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 4. TABLE COACH (coach validé uniquement)
 CREATE TABLE coach (
-    id INT AUTO_INCREMENT PRIMARY KEY,  -- Identifiant unique du coach
-    nom VARCHAR(100) NOT NULL,          -- Nom du coach
-    prenom VARCHAR(100) NOT NULL,       -- Prénom du coach
-    email VARCHAR(150) UNIQUE NOT NULL, -- Email professionnel, unique
-    adresse VARCHAR(255) NOT NULL,      -- Adresse postale
-    basic_fit TINYINT(1) NOT NULL,      -- 1 = déjà coach Basic-Fit, 0 = externe
-    specialite ENUM('prise_masse','seche','remise_forme') NOT NULL, 
-    experience INT NOT NULL, 
-    cv_pdf VARCHAR(255) NOT NULL, 
-    linkedin VARCHAR(255), 
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    adresse VARCHAR(255) NOT NULL,
+    basic_fit TINYINT(1) NOT NULL,
+    specialite ENUM('prise_masse','seche','remise_forme') NOT NULL,
+    experience INT NOT NULL,
     password VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 3. TABLE DES CANDIDATS COACH -----------------
-CREATE TABLE candidat (
-    id INT AUTO_INCREMENT PRIMARY KEY,  -- Identifiant unique du candidat
-    nom VARCHAR(100) NOT NULL, 
-    prenom VARCHAR(100) NOT NULL, 
-    email VARCHAR(150) UNIQUE NOT NULL, 
-    adresse VARCHAR(255) NOT NULL, 
-    basic_fit TINYINT(1) NOT NULL, 
-    specialite ENUM('prise_masse','seche','remise_forme') NOT NULL, 
-    experience INT NOT NULL, 
-    cv_pdf VARCHAR(255) NOT NULL, 
-    linkedin VARCHAR(255), 
-    password VARCHAR(255) NOT NULL, 
-    statut ENUM('en_attente','valide','refuse') DEFAULT 'en_attente', 
-    date_candidature TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 4. TABLE DES CLIENTS -----------------
+-- 5. TABLE DES CLIENTS -----------------
 CREATE TABLE client (
     id_client INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
@@ -58,7 +71,7 @@ CREATE TABLE client (
         ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 4. CRÉATION DE LA TABLE PROGRAMME ---------------
+-- 6. CRÉATION DE LA TABLE PROGRAMME ---------------
 -- (Sert de référence pour stocker les programmes en dur plus tard)
 CREATE TABLE IF NOT EXISTS programme (
     id_programme INT AUTO_INCREMENT PRIMARY KEY,
