@@ -32,6 +32,9 @@ if (isset($_POST['action'])) {
             //     break;
         }
     }
+    
+    //  On arrête le script après avoir traité une action POST
+    exit;
 }
 
 
@@ -74,7 +77,7 @@ switch ($page) {
             $clientController = new ClientController($bdd);
             $clientController->dashboard();
         } else {
-            include('view/utilisateurclient/connexionClient.php');
+            include('view/utilisateur/client/connexionClient.php');
         }
         break;
 
