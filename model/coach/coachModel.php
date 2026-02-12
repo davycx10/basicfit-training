@@ -39,13 +39,22 @@ class Coach {
     */
 public function getCoachById($id) {
     $req = $this->bdd->prepare("
-        SELECT id, prenom, nom, email AS mail
+        SELECT 
+            id, 
+            prenom, 
+            nom, 
+            email AS mail,
+            adresse,
+            specialite,
+            experience
         FROM coach 
         WHERE id = ?
     ");
     $req->execute([$id]);
     return $req->fetch(PDO::FETCH_ASSOC);
 }
+
+
 
     // Alias pour coller à ce que le controller appelle: selectById()
     public function selectById($id) {
