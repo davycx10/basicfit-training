@@ -11,6 +11,7 @@
  * - Gestion du profil (poids, taille, objectif, etc.)
  * =========================================
  */
+
 class Client {
 
     private $bdd;
