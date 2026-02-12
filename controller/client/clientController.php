@@ -1,13 +1,18 @@
 
 <?php
+    ini_set('display_errors', 1); 
+    ini_set('display_startup_errors', 1); 
+    error_reporting(E_ALL);
+
 
     // session_start();
 
-    include('bdd/bdd.php');
+    include(__DIR__ . '/../../bdd/bdd.php');
 
-    require_once('model/client/clientModel.php');
-    require_once('model/coach/coachModel.php');
-    require_once('model/programme/programmeModel.php');
+    require_once(__DIR__ . '/../../model/client/clientModel.php');
+    require_once(__DIR__ . '/../../model/coach/coachModel.php');
+    require_once(__DIR__ . '/../../model/programme/programmeModel.php');
+
 
     if (isset($_POST['action'])) {
 
@@ -57,28 +62,39 @@ class ClientController {
       - Insertion via clientModel
     */
     public function create() {
-        // $mdpHash = password_hash($_POST['motdepasse'], PASSWORD_BCRYPT);
+
+        // Hash du mot de passe
+        $mdpHash = password_hash($_POST['motdepasse'], PASSWORD_BCRYPT);
+
+        // Créneau horaire (time picker)
+        $dispo_creneaux = $_POST['creneau_debut'] . "-" . $_POST['creneau_fin'];
+
+        // Jours disponibles (checkboxes)
+        $dispo_jours = null;
+        if (!empty($_POST['dispo_jours'])) {
+            $dispo_jours = implode(",", $_POST['dispo_jours']);
+        }
+
+        // Insertion dans la BDD
         $this->client->ajouterClient(
             $_POST['nom'],
             $_POST['prenom'],
             $_POST['mail'],
-            $_POST['motdepasse'],   // mot de passe brut du formulaire
+            $mdpHash,            // mot de passe hashé
             $_POST['poids'],
             $_POST['taille'],
             $_POST['genre'],
             $_POST['basic_fit'],
             $_POST['objectif'],
-            $_POST['motivation']
+            $dispo_jours,        // 🔥 ordre correct
+            $dispo_creneaux,     // 🔥 ordre correct
+            $_POST['motivation'] // 🔥 ordre correct
         );
-
-        // echo '<div class="alert custom-alert alert-dismissible fade show" role="alert">
-        //         Inscription réussie ! Veuillez vous connecter.
-        //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        //     </div>';
 
         header('Location: http://localhost/basicfit-training/index.php?page=connexion_client');
         exit;
     }
+
 
     /*
       login()
@@ -147,7 +163,7 @@ class ClientController {
         $monCoach = null;
         if (!empty($monProfil['id_coach'])) {
             $coachModel = new Coach($this->bdd);
-            $monCoach = $coachModel->selectById($monProfil['id_coach']);
+            $monCoach = $coachModel->getCoachById($monProfil['id_coach']);
         }
 
         $progModel = new Programme($this->bdd);
@@ -172,7 +188,7 @@ class ClientController {
             $mdpHash,
             $_POST['poids'],
             $_POST['taille'],
-            $_POST['genre'],       // 🔥 ajouté
+            $_POST['genre'],       
             $_POST['basic_fit'],
             $_POST['objectif'],
             $_POST['motivation']

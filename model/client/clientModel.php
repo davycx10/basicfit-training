@@ -75,35 +75,54 @@ class Client {
      * 
      * @return bool - true si l'insertion réussit, false sinon
      */
-    public function ajouterClient($nom, $prenom, $mail, $mdp, $poids, $taille, $genre, $basic_fit, $objectif, $motivation){
-        // Hashage du mot de passe AVANT insertion
-        $hashedPassword = password_hash($mdp, PASSWORD_BCRYPT);
 
-    $req = $this->bdd->prepare("
-        INSERT INTO client 
-        (nom, prenom, mail, mot_de_passe, poids, taille, genre, basic_fit, objectif, motivation)
-        VALUES 
-        (:nom, :prenom, :mail, :mot_de_passe, :poids, :taille, :genre, :basic_fit, :objectif, :motivation)
-    ");
+        public function ajouterClient(
+            $nom, 
+            $prenom, 
+            $mail, 
+            $motdepasse, 
+            $poids, 
+            $taille, 
+            $genre, 
+            $basic_fit, 
+            $objectif, 
+            $dispo_jours, 
+            $dispo_creneaux, 
+            $motivation
+        ) {
+            // Le mot de passe est déjà hashé dans le controller
+            $hashedPassword = $motdepasse;
 
-    $req->bindParam(':nom', $nom);
-    $req->bindParam(':prenom', $prenom);
-    $req->bindParam(':mail', $mail);
-    $req->bindParam(':mot_de_passe', $hashedPassword);
-    $req->bindParam(':poids', $poids);
-    $req->bindParam(':taille', $taille);
-    $req->bindParam(':genre', $genre);
-    $req->bindParam(':basic_fit', $basic_fit);
-    $req->bindParam(':objectif', $objectif);
-    $req->bindParam(':motivation', $motivation); // <-- use the correct param name
+            $req = $this->bdd->prepare("
+                INSERT INTO client 
+                (nom, prenom, mail, mot_de_passe, poids, taille, genre, basic_fit, objectif, dispo_jours, dispo_creneaux, motivation)
+                VALUES 
+                (:nom, :prenom, :mail, :mot_de_passe, :poids, :taille, :genre, :basic_fit, :objectif, :dispo_jours, :dispo_creneaux, :motivation)
+            ");
 
-        $success = $req->execute();
-        if (!$success) {
-            var_dump($req->errorInfo());
-            exit;
-}
-return $success;
-    }
+            $req->bindParam(':nom', $nom);
+            $req->bindParam(':prenom', $prenom);
+            $req->bindParam(':mail', $mail);
+            $req->bindParam(':mot_de_passe', $hashedPassword);
+            $req->bindParam(':poids', $poids);
+            $req->bindParam(':taille', $taille);
+            $req->bindParam(':genre', $genre);
+            $req->bindParam(':basic_fit', $basic_fit);
+            $req->bindParam(':objectif', $objectif);
+            $req->bindParam(':dispo_jours', $dispo_jours);
+            $req->bindParam(':dispo_creneaux', $dispo_creneaux);
+            $req->bindParam(':motivation', $motivation);
+
+            $success = $req->execute();
+
+            if (!$success) {
+                var_dump($req->errorInfo());
+                exit;
+            }
+
+            return $success;
+        }
+
 
     /**
      * FONCTION: modifierClient()

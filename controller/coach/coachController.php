@@ -1,9 +1,12 @@
 <?php
+    ini_set('display_errors', 1); 
+    ini_set('display_startup_errors', 1); 
+    error_reporting(E_ALL);
 
-    include('bdd/bdd.php');
+    include(__DIR__ . '/../../bdd/bdd.php');
     
     // Inclusion du modèle Coach (contient la logique BDD)
-    require_once('model/coach/coachModel.php');
+    require_once(__DIR__ . '/../../model/coach/coachModel.php');
 
 /*
   POINT D'ENTRÉE POST:
@@ -84,14 +87,12 @@ class CoachController {
             header('Location: index.php?page=espace_coach');
             exit;
         } else {
-            // Gestion des erreurs de connexion
-            if (!$user) {
-                header('Location: index.php?page=connexion_coach&error=email_inconnu');
-            } else {
-                header('Location: index.php?page=connexion_coach&error=mdp_faux');
-            }
+            $_SESSION['error'] = "login_fail";
+            header("Location: /basicfit-training/index.php?page=connexion_coach");
             exit;
         }
+
+
     }
 
     /*
@@ -118,7 +119,7 @@ class CoachController {
             exit;
         }
 
-        $infosCoach = $this->coach->selectById($_SESSION['id_coach']);
+        $infosCoach = $this->coach->getCoachById($_SESSION['id_coach']);
         $maSpecialite = $infosCoach['specialite'];
 
         $clientsEnAttente = $this->coach->getClientsCompatibles($maSpecialite);

@@ -1,5 +1,6 @@
 <section class="form-section">
-    <div class="form-card" style="max-width: 600px;"> <h2>Inscription Espace Client</h2>
+    <div class="form-card" style="max-width: 600px;">
+        <h2>Inscription Espace Client</h2>
 
         <form action="controller/client/clientController.php" method="POST">
             
@@ -49,7 +50,7 @@
                     <option value="femme">Femme</option>
                     <option value="autre">Autre</option>
                     <option value="prefere_pas">Je préfère ne pas répondre</option>
-                    <option value="croissant"> Croissant </option>
+                    <option value="croissant">Croissant</option>
                 </select>
             </div>
 
@@ -70,6 +71,27 @@
                 </select>
             </div>
 
+            <!-- 🔥 CHAMPS MANQUANTS AJOUTÉS -->
+            <div class="form-group"> 
+                <label>Vos jours disponibles :</label> 
+                <div class="checkbox-group"> <label>
+                    <input type="checkbox" 
+                    name="dispo_jours[]" value="Lundi"> Lundi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Mardi"> Mardi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Mercredi"> Mercredi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Jeudi"> Jeudi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Vendredi"> Vendredi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Samedi"> Samedi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Dimanche"> Dimanche</label> 
+                </div> 
+            </div>
+
+            <div class="form-group"> 
+                <label>Créneau horaire :</label> 
+                <div style="display:flex; gap:10px;"> <input type="time" name="creneau_debut" class="form-input" required> 
+                <span style="align-self:center;">à</span> <input type="time" name="creneau_fin" class="form-input" required> 
+            </div> 
+            </div>
 
             <div class="form-group">
                 <label>Description / Motivation :</label>
@@ -81,7 +103,6 @@
 
         <div class="form-footer">
             <p>Déjà un compte ? <a href="index.php?page=connexion_client">Se connecter</a></p>
-            <!-- modifier le lien si besoin -->
         </div>
     </div>
 </section>

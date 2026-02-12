@@ -206,21 +206,55 @@ INSERT INTO programme (nom, type, description) VALUES
     </table>
     '
 );
+
+
 -- ==========================================
 -- DONNÉES DE TEST (FIXTURES)
 -- ==========================================
 
--- A. COACHS (Mot de passe pour tester : "1234")
--- Le hash ci-dessous correspond à "1234".
--- INSERT INTO coach (nom, prenom, mail, mot_de_passe, adresse, basic_fit, specialite, cv, valide) VALUES 
--- ('Durand', 'Paul', 'paul.coach@mail.com', '$2y$10$g5/1.2.3.4.hash.pour.1234.correspondant.a.bcrypt', 'Paris', 1, 'prise_masse', 'cv_paul.pdf', 1),
--- ('Martin', 'Julie', 'julie.coach@mail.com', '$2y$10$g5/1.2.3.4.hash.pour.1234.correspondant.a.bcrypt', 'Lyon', 1, 'seche', 'cv_julie.pdf', 1);
+-- ============================
+-- 🔐 ADMIN DE TEST
+-- ============================
+INSERT INTO admin (nom, prenom, email, mot_de_passe)
+VALUES (
+    'Toto',
+    'test',
+    'admin@test.com',
+    'test123'   -- mot de passe en clair pour test
+);
 
--- Note technique : Le hash ci-dessus est fictif pour l'exemple. 
--- Pour tester la connexion coach, je te conseille de modifier le mot de passe 
--- directement dans ta BDD avec un hash que tu connais, ou d'utiliser le formulaire d'inscription.
+-- ============================
+-- 🏋️ COACH VALIDÉ DE TEST
+-- ============================
+INSERT INTO coach (nom, prenom, email, adresse, basic_fit, specialite, experience, password)
+VALUES (
+    'Durand',
+    'Thomas',
+    'coach@test.com',
+    'Paris 75015',
+    1,
+    'prise_masse',
+    5,
+    'test123'   -- mot de passe en clair pour test
+);
 
--- B. CLIENT (Sans coach, pour tester le matching)
--- Mot de passe : "1234" (Hash valide généré par PHP pour "1234")
--- INSERT INTO client (nom, prenom, mail, mot_de_passe, poids, taille, basic_fit, objectif, dispo_jours, motivation, id_coach) VALUES 
--- ('Dupont', 'Thomas', 'thomas.client@mail.com', '$2y$10$HuW7/..GENERIC.HASH.FOR.1234..EXAMPLE', 80, 180, 1, 'prise_masse', 'Lundi, Jeudi', 'Motivation max', NULL);      
+-- ============================
+-- 👤 CLIENT DE TEST
+-- ============================
+INSERT INTO client (nom, prenom, mail, mot_de_passe, poids, taille, genre, basic_fit, objectif, dispo_jours, dispo_creneaux, motivation, id_coach)
+VALUES (
+    'Leroy',
+    'Camille',
+    'cliente@test.com',
+    'test123',   -- mot de passe en clair pour test
+    70,
+    170,
+    'femme',
+    1,
+    'Perte de poids',
+    'Lundi,Mardi,Jeudi',
+    '18h-20h',
+    'Je veux reprendre ma santé en main',
+    1  -- lié au coach Thomas
+);
+     

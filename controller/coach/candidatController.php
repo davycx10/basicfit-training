@@ -1,32 +1,24 @@
 <?php
 
-include('bdd/bdd.php');
+    ini_set('display_errors', 1); 
+    ini_set('display_startup_errors', 1); 
+    error_reporting(E_ALL);
 
-require_once('model/coach/candidatModel.php');
+    
+    include(__DIR__ . '/../../bdd/bdd.php');
+    require_once(__DIR__ . '/../../model/coach/candidatModel.php');
 
 if (isset($_POST['action'])) {
-    $candidatController = new CandidatController($bdd);
+    $controller = new CandidatController($bdd);
 
     switch ($_POST['action']) {
         case 'ajouter':
-            $candidatController->create();
-            break;
-
-        case 'valider':
-            $candidatController->valider($_POST['id']);
-            break;
-
-        case 'refuser':
-            $candidatController->refuser($_POST['id']);
-            break;
-
-        case 'nettoyer': //  Suppression automatique en fonction du statut
-            $candidatController->nettoyerCandidats();
+            $controller->create();
             break;
 
         default:
             header('Location: index.php?page=accueil');
-            break;
+            exit;
     }
 }
 
@@ -34,51 +26,50 @@ class CandidatController {
 
     private $candidat;
 
-    function __construct($bdd) {
+    public function __construct($bdd) {
         $this->candidat = new Candidat($bdd);
     }
 
     public function create() {
 
-        $cvFile = $_FILES['cv']['name']; // Récupération du nom du fichier CV
-        $cvPath = "uploads/cv/" . basename($cvFile); // Chemin de destination pour le CV
-        move_uploaded_file($_FILES['cv']['tmp_name'], $cvPath); // Déplacement du fichier téléchargé
+        /* -----------------------------
+           1. Upload du CV PDF
+        ------------------------------*/
+        if (!isset($_FILES['cv_pdf']) || $_FILES['cv_pdf']['error'] !== 0) {
+            die("Erreur lors de l'upload du CV.");
+        }
 
-        $this->candidat->ajouterCandidat(
+        $cvName = time() . "_" . basename($_FILES['cv_pdf']['name']);
+        $cvPath = "uploads/cv/" . $cvName;
+
+        move_uploaded_file($_FILES['cv_pdf']['tmp_name'], $cvPath);
+
+        /* -----------------------------
+           2. Hash du mot de passe
+        ------------------------------*/
+        $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        /* -----------------------------
+           3. Insertion en BDD
+        ------------------------------*/
+        $this->candidat->ajouterCandidature(
             $_POST['nom'],
             $_POST['prenom'],
-            $_POST['mail'],
+            $_POST['email'],
             $_POST['adresse'],
             $_POST['basic_fit'],
             $_POST['specialite'],
             $_POST['experience'],
             $cvPath,
             $_POST['linkedin'],
-            $_POST['password'],
-            
+            $passwordHash
         );
 
-        echo "<script>alert('Merci pour votre candidature, nous reviendrons vers vous dans les plus brefs délais.');</script>";
+        /* -----------------------------
+           4. Message + redirection
+        ------------------------------*/
+        echo "<script>alert('Merci pour votre candidature ! Un administrateur l’examinera prochainement.');</script>";
         header('Refresh:0; url=index.php?page=accueil');
-        exit;
-    }
-
-    public function valider($id) {
-        $this->candidat->validerCandidat($id);
-        header('Location: index.php?page=admin&message=candidature_validee');
-        exit;
-    }
-
-    public function refuser($id) {
-        $this->candidat->refuserCandidat($id);
-        header('Location: index.php?page=admin&message=candidature_refusee');
-        exit;
-    }
-
-    //  Nettoyage automatique des candidats selon statut et date
-    public function nettoyerCandidats() {
-        $this->candidat->supprimerCandidatsExpirés();
-        header('Location: index.php?page=admin&message=candidats_nettoyes');
         exit;
     }
 }

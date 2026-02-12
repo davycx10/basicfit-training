@@ -1,14 +1,18 @@
+
 <section class="form-section" > <div class="form-card">
         <h2>Espace Coach</h2>
         <p style="text-align: center; font-size: 0.9em; margin-bottom: 20px;">Accès réservé aux professionnels agréés</p>
 
-        <?php if(isset($_GET['error'])): ?>
+        <?php if(isset($_SESSION['error']) && $_SESSION['error']): ?>
             <div class="alert-error">
-                Identifiants incorrects ou compte non validé.
+                Identifiants incorrects. Vérifiez votre email et votre mot de passe.
             </div>
+            <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
 
-        <form action="controller/coach/coachController.php" method="POST">
+
+
+        <form action="index.php" method="POST">
             
             <input type="hidden" name="controller" value="coach">
             <input type="hidden" name="action" value="connexion">
