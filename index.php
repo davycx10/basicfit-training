@@ -1,4 +1,7 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 
 include('bdd/bdd.php');
 
@@ -12,6 +15,10 @@ if (isset($_POST['action'])) {
                 include('controller/client/clientController.php');
                 break;
 
+            case 'candidat':
+                include('controller/coach/candidatController.php');
+                break;
+
             case 'coach':
                 include('controller/coach/coachController.php');
                 break;
@@ -20,11 +27,14 @@ if (isset($_POST['action'])) {
                 include('controller/programme/programmeController.php');
                 break;
 
-            case 'utilisateur':
-                include('controller/utilisateur/utilisateurController.php');
-                break;
+            // case 'utilisateur':
+            //     include('controller/utilisateur/utilisateurController.php');
+            //     break;
         }
     }
+    
+    //  On arrête le script après avoir traité une action POST
+    exit;
 }
 
 
@@ -91,37 +101,14 @@ switch ($page) {
         }
         break;
 
-    // --- PARTIE PRODUIT (Coach) ---
-    // case 'listProduit':
-    //     include('view/produit/listProduit.php'); // <-- chemin corrigé
-    //     break;
 
-    // case 'listTypeProduit':
-    //     include('view/type_produit/listTypeProduit.php');
-    //     break;
-
-    // --- PARTIE UTILISATEUR ---
-    // case 'listUser':
-    //     include('view/user/listUser.php');
-    //     break;
-
-    // case 'addUser':
-    //     include('view/user/addUser.php');
-    //     break;
-
-    // case 'LogInUser':
-    //     include('view/user/LogInUser.php');
-    //     break;
 
     // --- PAGE PROGRAMME  ---
     case 'programme':
         include('view/programme/programme.php');
         break;
 
-    // --- ADMINISTRATION ---
-    // case 'utilisateur':
-    //     include('view/utilisateur/listeUtilisateur.php');
-    //     break;
+
 
     // --- PAR DÉFAUT : ACCUEIL ---
     default:

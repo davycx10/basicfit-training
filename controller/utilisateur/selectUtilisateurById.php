@@ -4,7 +4,7 @@
 -->
 
 <?php
-
+// Récupère un utilisateur spécifique par son ID passé en paramètre GET
 include('bdd/bdd.php');
 include('model/utilisateur/utilisateurModel.php');
 

@@ -1,4 +1,4 @@
-// view/coach/espaceCoach.php
+
 
 <div class="container padding-container">
 
@@ -10,6 +10,7 @@
         <div class="banner-stat">
             <span class="stat-label">Votre Spécialité</span>
             <span class="stat-value orange"><?= htmlspecialchars($maSpecialite) ?></span>
+
         </div>
     </div>
 

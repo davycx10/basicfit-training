@@ -57,7 +57,7 @@
                             <i class="bi bi-person-badge"></i> Coach
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="coachDropdown">
-                            <li><a class="dropdown-item" href="index.php?page=inscription_coach"><i class="bi bi-person-plus"></i> Inscription Coach</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=inscription_coach"><i class="bi bi-person-plus"></i> Postuler comme coach </a></li>
                             <li><a class="dropdown-item" href="index.php?page=connexion_coach"><i class="bi bi-box-arrow-in-right"></i> Connexion Coach</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="index.php?page=espace_coach"><i class="bi bi-person-workspace"></i> Espace Coach</a></li>
@@ -78,42 +78,37 @@
                     </li>
                 </ul>
 
-                <!-- Partie droite : gestion utilisateur selon rôle -->
+                <!-- Partie droite : affichage utilisateur connecté -->
                 <ul class="navbar-nav ms-auto">
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'client'): ?>
-                        <li class="nav-item">
-                            <span class="navbar-text text-white">Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?></span>
-                        </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="navbar-text text-white me-3 fs-4">
+                                Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?>
+                            </span>
                             <form action="index.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="client">
                                 <input type="hidden" name="action" value="deconnexion">
-                                <button type="submit" class="btn btn-outline-light ms-2"><i class="bi bi-box-arrow-left"></i> Déconnexion</button>
+                                <button type="submit" class="btn btn-outline-light">
+                                    <i class="bi bi-box-arrow-left"></i> Déconnexion
+                                </button>
                             </form>
                         </li>
 
                     <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'coach'): ?>
-                        <li class="nav-item">
-                            <span class="navbar-text text-white">Coach <?= htmlspecialchars($_SESSION['prenom']) ?></span>
-                        </li>
-                        <li class="nav-item">
+
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="navbar-text text-white me-3 fs-4">
+                                Bonjour, <?= htmlspecialchars($_SESSION['prenom']) ?>
+                            </span>
                             <form action="index.php" method="POST" class="d-inline">
                                 <input type="hidden" name="controller" value="coach">
                                 <input type="hidden" name="action" value="deconnexion">
-                                <button type="submit" class="btn btn-outline-light ms-2"><i class="bi bi-box-arrow-left"></i> Déconnexion</button>
+                                <button type="submit" class="btn btn-outline-light">
+                                    <i class="bi bi-box-arrow-left"></i> Déconnexion
+                                </button>
                             </form>
                         </li>
 
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=connexion_client"><i class="bi bi-person"></i> Espace Client</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=inscription_coach"><i class="bi bi-person-plus"></i> Devenir Coach</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=connexion_coach"><i class="bi bi-lock"></i> Accès Pro</a>
-                        </li>
                     <?php endif; ?>
                 </ul>
             </div>

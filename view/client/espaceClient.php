@@ -1,7 +1,3 @@
-// view/client/espaceClient.php
---- a/file:///var/www/html/basicfit-training/view/client/espaceClient.php
-+++ b/file:///var/www/html/basicfit-training/view/client/espaceClient.php
-
 <div class="container padding-container">
     
     <div class="dashboard-welcome">
@@ -63,20 +59,62 @@
 
 
     </div>
+        <div class="card dashboard-card programme-large"> 
+            <div class="card-header-clean"> 
+                <h3> Mon Programme Détaillé</h3> 
+                <?php 
+                if ($monProgramme): ?> 
+                <span class="badge orange"><?= htmlspecialchars($monProgramme['nom']) ?>
+            </span> <?php endif; 
+            ?> 
+            </div> 
+            <?php if ($monCoach && $monProgramme): ?> 
+                <div class="programme-content overflow-auto"> 
+                    <div class="row g-4"> <?= $monProgramme['description'] ?> 
+                </div> 
+            </div> <?php else: ?>
 
-    <div class="card dashboard-card programme-large">
-        <div class="card-header-clean">
-            <h3> Mon Programme Détaillé</h3>
-            <?php if ($monProgramme): ?>
-                <span class="badge orange"><?= htmlspecialchars($monProgramme['nom']) ?></span>
-            <?php endif; ?>
-        </div>
-        
-        <?php if ($monCoach && $monProgramme): ?>
-            <div class="programme-content">
-                <?= $monProgramme['description'] ?> 
-            </div>
-        <?php else: ?>
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".programme-content");
+    if (!container) return;
+
+    const elements = Array.from(container.children);
+    const newGrid = document.createElement("div");
+    newGrid.className = "row g-4";
+
+    let currentCard = null;
+
+    elements.forEach(el => {
+        if (el.tagName === "H4") {
+            // Nouvelle card
+            currentCard = document.createElement("div");
+            currentCard.className = "col-lg-6 col-md-12";
+            currentCard.innerHTML = `
+                <div class="card p-3 shadow-sm">
+                    <h4 style="color:#fe7000; font-weight:bold;">${el.innerHTML}</h4>
+                    <div class="card-body-content"></div>
+                </div>
+            `;
+            newGrid.appendChild(currentCard);
+        } else if (currentCard) {
+            // Ajouter le contenu dans la card
+            currentCard.querySelector(".card-body-content").appendChild(el);
+        }
+    });
+
+    // Remplacer l'ancien contenu par la grille
+    container.innerHTML = "";
+    container.appendChild(newGrid);
+});
+</script>
+
+            
+
+
+
+
+
             <div class="locked-zone-large">
                 <div class="lock-circle">🔒</div>
                 <h3>Programme Verrouillé</h3>

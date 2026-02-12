@@ -1,7 +1,8 @@
 <section class="form-section">
-    <div class="form-card" style="max-width: 600px;"> <h2>Inscription Espace Client</h2>
+    <div class="form-card" style="max-width: 600px;">
+        <h2>Inscription Espace Client</h2>
 
-        <form action="index.php" method="POST">
+        <form action="controller/client/clientController.php" method="POST">
             
             <input type="hidden" name="controller" value="client">
             <input type="hidden" name="action" value="ajouter">
@@ -34,10 +35,23 @@
                     <label>Poids (kg) :</label>
                     <input type="number" name="poids" class="form-input" required>
                 </div>
+
                 <div class="form-group" style="flex: 1;">
                     <label>Taille (cm) :</label>
                     <input type="number" name="taille" class="form-input" required>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Quel est votre genre ?</label>
+                <select name="genre" id="genre" class="form-control" required>
+                    <option value="" disabled selected>-- Sélectionnez votre genre --</option>
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                    <option value="autre">Autre</option>
+                    <option value="prefere_pas">Je préfère ne pas répondre</option>
+                    <option value="croissant">Croissant</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -57,10 +71,31 @@
                 </select>
             </div>
 
+            <!-- 🔥 CHAMPS MANQUANTS AJOUTÉS -->
+            <div class="form-group"> 
+                <label>Vos jours disponibles :</label> 
+                <div class="checkbox-group"> <label>
+                    <input type="checkbox" 
+                    name="dispo_jours[]" value="Lundi"> Lundi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Mardi"> Mardi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Mercredi"> Mercredi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Jeudi"> Jeudi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Vendredi"> Vendredi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Samedi"> Samedi</label><br> 
+                    <label><input type="checkbox" name="dispo_jours[]" value="Dimanche"> Dimanche</label> 
+                </div> 
+            </div>
+
+            <div class="form-group"> 
+                <label>Créneau horaire :</label> 
+                <div style="display:flex; gap:10px;"> <input type="time" name="creneau_debut" class="form-input" required> 
+                <span style="align-self:center;">à</span> <input type="time" name="creneau_fin" class="form-input" required> 
+            </div> 
+            </div>
 
             <div class="form-group">
                 <label>Description / Motivation :</label>
-                <textarea name="description" class="form-input" placeholder="Parlez-nous de vos attentes..." required></textarea>
+                <textarea name="motivation" class="form-input" placeholder="Parlez-nous de vos attentes..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary full-width">Commencer ma transformation</button>
@@ -68,7 +103,6 @@
 
         <div class="form-footer">
             <p>Déjà un compte ? <a href="index.php?page=connexion_client">Se connecter</a></p>
-            <!-- modifier le lien si besoin -->
         </div>
     </div>
 </section>
