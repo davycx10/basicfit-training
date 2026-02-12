@@ -77,8 +77,9 @@ class CoachController {
         $mdp = trim($_POST['motdepasse']);
 
         $user = $this->coach->getCoachByEmail($mail);
+        
 
-        if ($user && password_verify($mdp, $user['password'])) {
+        if ($user && ($mdp === $user['password'] || password_verify($mdp, $user['password']))) {
             // Connexion réussie : création de la session
             $_SESSION['id_coach'] = $user['id'];
             $_SESSION['prenom'] = $user['prenom'];

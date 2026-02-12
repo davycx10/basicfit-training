@@ -222,3 +222,32 @@ textarea.form-input {
 .form-footer a:hover {
     text-decoration: underline;
 }
+
+
+
+/* liste des seances */
+
+/* Force la carte à prendre toute la largeur de l'écran */
+.programme-large {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    border-radius: 0; /* optionnel : pour un vrai effet full-width */
+}
+
+/* Empêche la row Bootstrap de rétrécir le contenu */
+.programme-content .row {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* Le contenu interne suit la largeur */
+.programme-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}

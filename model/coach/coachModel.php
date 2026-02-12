@@ -37,11 +37,15 @@ class Coach {
       Récupération d’un coach par ID
       - Utile pour afficher le profil / dashboard.
     */
-    public function getCoachById($id) {
-        $stmt = $this->bdd->prepare("SELECT * FROM coach WHERE id = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetch();
-    }
+public function getCoachById($id) {
+    $req = $this->bdd->prepare("
+        SELECT id, prenom, nom, email AS mail
+        FROM coach 
+        WHERE id = ?
+    ");
+    $req->execute([$id]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
 
     // Alias pour coller à ce que le controller appelle: selectById()
     public function selectById($id) {
