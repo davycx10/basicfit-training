@@ -5,8 +5,10 @@
 <?php
 
 	try{
-		$users = "admin";
-		$pass = "myadmin";
+		// sur pc perso user = admin, pass = myadmin
+		// pc  user = adminphp, pass = (vide)
+		$users = "adminphp";
+		$pass = "";
 		$bdd = new PDO ('mysql:host=localhost;dbname=fitconnect',$users,$pass);
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}catch (PDOException $e){

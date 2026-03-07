@@ -40,14 +40,14 @@ class CandidatController {
         }
 
         $cvName = time() . "_" . basename($_FILES['cv_pdf']['name']);
-        $cvPath = "uploads/cv/" . $cvName;
+        $cvPath = __DIR__ . '/../../uploads/cv/' . $cvName;
 
         move_uploaded_file($_FILES['cv_pdf']['tmp_name'], $cvPath);
 
         /* -----------------------------
            2. Hash du mot de passe
         ------------------------------*/
-        $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        // $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         /* -----------------------------
            3. Insertion en BDD
@@ -62,14 +62,16 @@ class CandidatController {
             $_POST['experience'],
             $cvPath,
             $_POST['linkedin'],
-            $passwordHash
+            $_POST['password'] // Stockage en clair (à éviter en production !)
         );
 
         /* -----------------------------
            4. Message + redirection
         ------------------------------*/
-        echo "<script>alert('Merci pour votre candidature ! Un administrateur l’examinera prochainement.');</script>";
-        header('Refresh:0; url=index.php?page=accueil');
-        exit;
+    echo "<script>
+        alert('Merci pour votre candidature ! Un administrateur l\'examinera prochainement.');
+        window.location.href = '../../index.php?page=accueil';
+    </script>";
+    exit;
     }
 }
