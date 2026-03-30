@@ -1,127 +1,110 @@
+D'accord, je comprends mieux ! Tu sépares la présentation des deux projets (le Web d'un côté, le Java de l'autre).
 
-# BasicFit – Projet CFA INSTA – Client Léger  
-## Plateforme de Formation et de Coaching Sportif
+Voici donc ton document de présentation strictement concentré sur le site Web (Client Léger). J'ai retiré toutes les mentions au logiciel Java, tout en gardant ton texte propre et raccord avec ton code PHP (sans les fausses fonctionnalités de messagerie ou de créneaux horaires).
 
-### Contexte du projet
-Le projet **Basic-Fit Training** est une plateforme web développée dans le cadre d’un projet étudiant du CFA INSTA.  
-Son objectif est de mettre en relation les adhérents Basic-Fit et les coachs sportifs, selon leurs objectifs personnels, tout en proposant une expérience interactive et motivante.  
+Tu peux l'utiliser comme README.md ou fiche de présentation pour ta partie Web :
 
-La plateforme permet aux utilisateurs de suivre des programmes d’entraînement en ligne, adaptés à leurs besoins :  
-- Perte de poids  
-- Prise de masse  
-- Remise en forme  
-- Maintien d’une activité physique régulière  
+BasicFit – Projet CFA INSTA – Client Léger
+Plateforme Web de Formation et de Coaching Sportif
+Contexte du projet
+Le projet Basic-Fit Training est une plateforme web développée dans le cadre d’un projet étudiant du CFA INSTA.
+Son objectif principal est de mettre en relation les adhérents Basic-Fit et des coachs sportifs professionnels, selon leurs objectifs personnels, au travers d'une interface web fluide et sécurisée.
 
-L’accent est mis sur la simplicité d’utilisation, la personnalisation du suivi et une navigation claire entre les trois rôles principaux : **client, coach et administrateur**.  
-Le site est pensé pour être intuitif, fluide et responsive, utilisable aussi bien sur ordinateur que sur mobile.
+La plateforme permet de répondre à divers besoins d'entraînement :
 
----
+Prise de masse
 
-### Fonctionnement général
-Lorsqu’un visiteur arrive sur le site, il découvre la présentation du concept Basic-Fit Training et les différents types de coaching proposés.  
-Pour accéder au service, il doit créer un compte utilisateur via un formulaire d’inscription comprenant :  
-- Nom, prénom, adresse e-mail, mot de passe  
-- Poids, taille, objectif sportif  
-- Jours de disponibilité (minimum 3, maximum 5 par semaine)  
-- Créneaux horaires disponibles (matin, midi, soir)  
-- Une courte description personnelle (motivation, attentes, etc.)  
+Sèche
 
-Une fois validée, la demande est automatiquement envoyée aux coachs correspondant à la spécialité choisie.  
+Remise en forme
 
----
+L’accent est mis sur la simplicité d’utilisation, le "matching" par spécialité et une navigation claire développée avec une architecture Client Léger (PHP natif).
 
-### Côté coach
-Les coachs peuvent postuler directement via la rubrique **“Postuler comme coach”**.  
-Ils renseignent leurs informations personnelles :  
-- Nom, prénom, adresse e-mail, adresse postale  
-- Spécialité sportive (prise de masse, sèche, remise en forme)  
-- Dépôt de leur CV  
+Fonctionnement général (Espace Adhérent)
+Lorsqu’un visiteur arrive sur le site, il découvre la présentation du concept Basic-Fit Training. Pour accéder au service et trouver un coach, il doit créer un compte utilisateur via un formulaire d’inscription sécurisé comprenant :
 
-Toutes les candidatures sont vérifiées par l’administrateur.  
-Lorsqu’un coach est accepté, il reçoit un mail de confirmation avec ses identifiants et un lien vers l’Espace Coach.  
+Identité et contact (Nom, prénom, adresse e-mail, mot de passe)
 
-Dans cet espace, le coach peut :  
-- Consulter les demandes en attente correspondant à sa spécialité  
-- Accepter ou refuser une demande  
-- Gérer la liste de ses clients attribués  
-- Voir les informations complètes de chaque client (objectif, jours, créneaux, motivation)  
+Données morphologiques (Poids, taille)
 
-Lorsqu’un coach accepte une demande :  
-- Elle disparaît automatiquement des autres coachs de la même spécialité  
-- Le client devient officiellement rattaché à ce coach  
-- Il apparaît dans la section **“Mes clients”** du coach  
+Objectif sportif (Prise de masse, sèche, remise en forme)
 
----
+Une courte description personnelle (Motivation, attentes)
 
-### Espace client
-Une fois sa demande acceptée, le client accède à son tableau de bord personnel, où il peut voir :  
-- Les informations de son coach (nom, e-mail, téléphone)  
-- Les jours et horaires d’entraînement choisis lors de l’inscription  
-- Le statut de sa demande (“Acceptée”)  
+Une fois le profil créé, l'algorithme du site propose automatiquement ce client aux coachs qui partagent la spécialité correspondant à son objectif.
 
-Cette interface simple et claire permet au client de suivre son emploi du temps et de contacter son coach en cas de besoin.  
+Une fois sa demande acceptée par un professionnel, le client accède à son tableau de bord personnel, où il peut voir :
 
----
+Le statut de sa demande (“Acceptée”).
 
-### Espace administrateur
-L’administrateur dispose d’un espace de gestion complet. Il peut :  
-- Gérer les candidatures des coachs  
-- Accepter ou refuser les coachs  
-- Créer les comptes et envoyer les mails d’accès  
-- Consulter, modifier ou supprimer les comptes clients et coachs  
-- Superviser toutes les demandes en cours et les attributions coach–client  
+Les coordonnées complètes de son coach attitré (Nom, E-mail, Téléphone) pour démarrer l'entraînement.
 
-Cet espace garantit une organisation claire et un contrôle total du fonctionnement de la plateforme.  
+Le récapitulatif de son profil physique.
 
----
+Côté Coach (Espace Pro)
+Les professionnels peuvent postuler directement via la page “Postuler comme coach”.
+Ils renseignent leurs informations :
 
-### Design et ergonomie
-Le design du site repose sur le framework **Bootstrap**, afin d’assurer :  
-- Une interface moderne et responsive  
-- Une cohérence visuelle sur tous les supports (ordinateur, tablette, mobile)  
-- Un développement rapide et structuré des composants graphiques  
+Nom, prénom, adresse e-mail, téléphone, adresse postale
 
-L’utilisation de Bootstrap permet de garantir une expérience utilisateur fluide et conforme aux standards du web actuel.   
+Spécialité sportive
 
----
+Lien vers leur CV / Portfolio
 
-### Structure du projet
-Le projet est organisé selon une architecture **MVC (Modèle – Vue – Contrôleur)**, qui permet une meilleure séparation du code et une maintenance facilitée.  
+Sécurité : À la création, le compte du coach est inactif par mesure de sécurité. Son profil doit d'abord être audité et validé par l'administration Basic-Fit.
 
-- `/bdd/` → fichiers liés à la base de données  
-- `/controller/` → logique entre modèle et vue  
-- `/model/` → gestion des données et requêtes SQL  
-- `/view/` → pages visibles par l’utilisateur   
-- `/docs/` → documentation du projet 
+Une fois validé, le coach se connecte à son Espace Pro Web. Dans cet espace, il peut :
 
-#### À propos du MCD
-Le **Modèle Conceptuel de Données (MCD)** définit :  
-- Les entités (Utilisateur, Programme, Exercice, Objectif…)  
-- Leurs attributs (nom, âge, email…)  
-- Les relations entre elles (ex. : un utilisateur peut suivre plusieurs programmes)  
+Consulter les demandes en attente des adhérents correspondant exactement à sa spécialité.
 
-Le MCD est une étape essentielle pour structurer la base de données avant sa mise en œuvre technique.  
+Accepter une demande (le client lui est alors officiellement rattaché) ou la refuser.
 
----
+Gérer la liste de ses clients actifs et consulter leurs motivations pour préparer leurs séances.
 
-### Bonnes pratiques de collaboration
-- Ne poussez jamais vos fichiers de configuration locale (base de données, chemins spécifiques…)  
-- Commentez vos modifications locales  
-- Stashez les fichiers sensibles avant de faire un commit  
-- Respectez la structure MVC pour garder le projet clair et maintenable  
+Design et ergonomie
+Le design du site repose sur le framework Bootstrap 5, afin d’assurer :
 
----
+Une interface moderne, épurée et pensée en "Mobile-First".
 
-### Objectif et valeur ajoutée
-Le projet Basic-Fit Training modernise la relation entre coachs et adhérents Basic-Fit grâce à un système automatisé, fluide et efficace.  
-Chaque utilisateur définit ses disponibilités dès l’inscription, ce qui rend la mise en relation rapide et pertinente.  
-Les coachs disposent d’un espace clair pour gérer leurs clients, tandis que les administrateurs supervisent l’ensemble du site.  
+Une cohérence visuelle sur tous les supports (ordinateur, tablette, smartphone).
 
-Ce projet se distingue par :  
-- Sa simplicité d’utilisation  
-- Sa logique fonctionnelle bien pensée  
-- Son potentiel d’évolution (ajout futur de messagerie, suivi d’abonnements, statistiques, etc.)  
+Le respect de la charte graphique de Basic-Fit (Couleurs dynamiques, lisibilité optimale).
 
-**Basic-Fit Training relie efficacement clients, coachs et administrateurs autour d’un objectif commun : rendre l’entraînement plus accessible, encadré et motivant.**
+L’utilisation de Bootstrap permet de garantir une expérience utilisateur fluide et conforme aux standards du web actuel.
 
----
+Structure du projet (Architecture MVC)
+Le projet Web est organisé selon une architecture MVC (Modèle-Vue-Contrôleur) couplée à un routeur centralisé (index.php), ce qui permet une séparation claire du code et une maintenance facilitée :
+
+/bdd/ → Fichiers de configuration et connexion à la base de données.
+
+/controller/ → Logique métier (Traitement des formulaires, sessions, assignations).
+
+/model/ → Gestion des données et requêtes SQL sécurisées (CRUD).
+
+/view/ → Pages HTML/PHP visibles par l’utilisateur (Templates).
+
+/style/ → Feuilles de style CSS personnalisées.
+
+À propos du modèle de données :
+La base de données relationnelle (MySQL InnoDB) est structurée autour d'entités fortes (Client, Coach, Utilisateur) reliées par des clés étrangères avec des contraintes de suppression en cascade pour garantir l'intégrité des informations.
+
+Sécurité et Bonnes pratiques de collaboration
+Mots de passe : Hachage cryptographique systématique (algorithme Bcrypt).
+
+Injections SQL : Utilisation exclusive de requêtes préparées via l'objet PDO en PHP.
+
+Git : Ne jamais pousser les identifiants de base de données en clair sur le dépôt (utilisation du .gitignore pour les fichiers de configuration locaux).
+
+Code clair : Respect strict de la structure MVC pour garder le projet maintenable par n'importe quel autre développeur.
+
+Objectif et valeur ajoutée
+Le projet Web Basic-Fit Training modernise la relation entre coachs et adhérents grâce à un système automatisé, fluide et ciblé.
+Ce projet se distingue par :
+
+Sa simplicité d’utilisation et son ergonomie.
+
+Sa logique fonctionnelle bien pensée (Matching par objectif).
+
+La robustesse de son code PHP (MVC natif, sécurisation des données).
+
+Basic-Fit Training relie efficacement clients et coachs autour d’un objectif commun : rendre l’entraînement plus accessible et encadré.
